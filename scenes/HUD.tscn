@@ -1,0 +1,101 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdtq25ijhiaa3"]
+
+[ext_resource type="Script" uid="uid://dae01qrni0mu2" path="res://code/CamerasControllerHUD.gd" id="1_wc5e5"]
+[ext_resource type="Script" path="res://code/node.gd" id="2_u6o08"]
+[ext_resource type="Script" path="res://code/moneyControllerHUD.gd" id="2_wc5e5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wc5e5"]
+font_size = 30
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Cameras HUD" type="CanvasLayer" parent="."]
+
+[node name="CameraFeed" type="TextureRect" parent="Cameras HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+expand_mode = 1
+
+[node name="BttnsContainer" type="Control" parent="Cameras HUD"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+script = ExtResource("1_wc5e5")
+
+[node name="Cam1" type="Button" parent="Cameras HUD/BttnsContainer"]
+layout_mode = 0
+offset_left = -95.0
+offset_top = 108.0
+offset_right = -40.0
+offset_bottom = 139.0
+text = "gaga"
+
+[node name="Cam2" type="Button" parent="Cameras HUD/BttnsContainer"]
+layout_mode = 0
+offset_left = -25.0
+offset_top = 108.0
+offset_right = 29.0
+offset_bottom = 139.0
+text = "gaga2"
+
+[node name="Cam3" type="Button" parent="Cameras HUD/BttnsContainer"]
+layout_mode = 0
+offset_left = -26.0
+offset_top = 61.0
+offset_right = 28.0
+offset_bottom = 92.0
+text = "gaga3"
+
+[node name="MainButton" type="Button" parent="Cameras HUD/BttnsContainer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -82.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Camaras"
+
+[node name="Economí HUD" type="CanvasLayer" parent="."]
+
+[node name="MoneyController" type="Control" parent="Economí HUD"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+script = ExtResource("2_wc5e5")
+
+[node name="MoneyLabel" type="Label" parent="Economí HUD/MoneyController"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -43.0
+offset_right = 126.0
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_wc5e5")
+vertical_alignment = 2
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("2_u6o08")
