@@ -17,7 +17,6 @@ func _ready() -> void:
 	#for i in range(0, 2):
 	self.energy = 100
 	self.money = 0
-	
 
 func move_enemies() -> bool: 
 	return ENEMIES[current_night] <= (randi_range(0, ENEMIES[str(current_night)]))

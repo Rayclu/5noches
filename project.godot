@@ -15,6 +15,11 @@ run/main_scene="uid://dwu6crnpiskku"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+LEVELS="*res://code/Levels.gd"
+ECONOMY="*res://code/Economy.gd"
+
 [file_customization]
 
 folder_colors={
