@@ -6,11 +6,12 @@ var signalPush = 0
 
 func _ready() -> void:
 	SignalCam.pressed.connect(_money_displayed)
+	get_parent().get_parent().get_node("PRUEBAS/Button").pressed.connect(_add_money.bind(50))
+	get_parent().get_parent().get_node("PRUEBAS/Button2").pressed.connect(_less_money.bind(50))
 	_update_label(0)
-	var proove = get_parent().get_parent().get_node("Node")
+	var proove = get_parent().get_parent().get_node("PRUEBAS")
 	proove.connect("add_money",Callable(self, "_add_money"))
 	proove.connect("spend_money",Callable(self, "_less_money"))
-	
 
 func _add_money(money):
 	_animate_money_change(int(TextMoney.text) + money)
