@@ -1,5 +1,4 @@
 extends Node
-var camScene = preload("res://scenes/cameraScene.tscn")
 var peopleSacene = preload("res://scenes/peopleScene.tscn") 
 @onready var CAMS = $cameras
 var current_night: int = 1
@@ -16,7 +15,6 @@ var money: int
 
 func _ready() -> void:
 	#for i in range(0, 2):
-	$cameras.add_child(camScene.instantiate())
 	self.energy = 100
 	self.money = 0
 	
