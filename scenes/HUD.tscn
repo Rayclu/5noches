@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdtq25ijhiaa3"]
 
 [ext_resource type="Script" uid="uid://dae01qrni0mu2" path="res://code/CamerasControllerHUD.gd" id="1_wc5e5"]
-[ext_resource type="Script" path="res://code/node.gd" id="2_u6o08"]
-[ext_resource type="Script" path="res://code/moneyControllerHUD.gd" id="2_wc5e5"]
+[ext_resource type="Script" uid="uid://brnv4m5u7js06" path="res://code/node.gd" id="2_u6o08"]
+[ext_resource type="Script" uid="uid://dotmdc2kywt6g" path="res://code/moneyControllerHUD.gd" id="2_wc5e5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wc5e5"]
 font_size = 30

@@ -5,17 +5,16 @@ var type
 const TYPES_PEOPLE = ["moto", "cobre", "resorte", "testigo", "client"]
 const ENEMIES_ROUTES = {
 	"moto": ["esquina","reja","screamer"], # <-- screamer = partida perdida
-	"cobre": ["","","screamer"],
-	"resorte": ["screamer"],
-	"testigo": ["screamer"] # <-- acá tendrían que ir las camaras en las que pueden aparecer, creo
+	"cobre": ["casa", "cables","screamer"],
+	"resorte": ["", "screamer"],
+	"testigo": ["","screamer"] # <-- acá tendrían que ir las camaras en las que pueden aparecer, creo
 }
 const FRIEND_ROUTE = ["reja"]
-var Actual_ubication = ""
 
-
-func moveEnemy(typ:String) -> Array:
+func moveEnemy(typ:String = self.type) -> Array:
 	return ENEMIES_ROUTES[typ][randi() % len(ENEMIES_ROUTES[typ])]
+func get_type():
+	return self.type
 func _ready() -> void:
-	var num = randi() % 100
-	#actualPosition = moveEnemy(self.typ) if num >= 50 else ENEMIES_ROUTES[type][0]
-	self.actualPosition = moveEnemy(self.type)[0]
+	self.actualPosition = moveEnemy()[0]
+	self.type = TYPES_PEOPLE.slice(0, len(TYPES_PEOPLE)-2).pick_random()
