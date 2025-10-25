@@ -21,3 +21,5 @@ script = ExtResource("1_uwrxv")
 script = SubResource("GDScript_yqjtg")
 
 [node name="enemies" type="Node" parent="."]
+
+[node name="minigames" type="Node" parent="."]

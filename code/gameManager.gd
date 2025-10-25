@@ -1,8 +1,10 @@
 extends Node
 var peopleSacene = preload("res://scenes/peopleScene.tscn") 
+var manigames = preload("res://")
 @onready var CAMS = $cameras
 var current_night: int = 1
 var energy:int
+
 const ENEMIES = {
 	"1": 30,
 	"2": 50,
@@ -19,13 +21,16 @@ func _ready() -> void:
 	self.money = 0
 	
 
-func move_enemies() -> bool: 
-	return ENEMIES[current_night] <= (randi_range(0, ENEMIES[str(current_night)]))
+func can_move_enemies() -> bool: 
+	return ENEMIES[str(current_night)] <= (randi_range(0, ENEMIES[str(current_night)]))
 
-
+func instantiate_mini_play():
+	var node = get_node("minigames")
+	
+	
 func _process(delta: float) -> void:
 	for enem in ENEMIES: 
-		if(move_enemies()):
+		if(can_move_enemies()):
 			
 			pass
 		else:
