@@ -1,12 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwu0mvn5clik3"]
+[gd_scene load_steps=12 format=3 uid="uid://dwu0mvn5clik3"]
 
 [ext_resource type="Script" uid="uid://c1rrisee4dsxr" path="res://Minigames/Code/buttons_minigames.gd" id="1_splcv"]
+[ext_resource type="Texture2D" uid="uid://cp8x3c2ypcqfg" path="res://assets/background.png" id="2_7a3a2"]
 [ext_resource type="Texture2D" uid="uid://bblxgnwaw1trp" path="res://assets/simbol.png" id="2_cqlcn"]
 [ext_resource type="Texture2D" uid="uid://dcctv02ekw5yq" path="res://assets/simbol2.png" id="3_e8sqh"]
 [ext_resource type="Texture2D" uid="uid://47rix5a5bpyp" path="res://assets/simbol3.png" id="4_7a3a2"]
 [ext_resource type="Texture2D" uid="uid://b2wfbvkeenjjj" path="res://assets/simbol4.png" id="5_nucso"]
 [ext_resource type="Texture2D" uid="uid://ctbwgsttg4v4k" path="res://assets/simbol5.png" id="6_5qd7e"]
 [ext_resource type="Texture2D" uid="uid://bhp1dwryr53o2" path="res://assets/simbol6.png" id="7_5r0kh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7a3a2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nucso"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_7a3a2"]
+font_size = 32
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -16,6 +25,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_splcv")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("2_7a3a2")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
@@ -43,6 +56,7 @@ texture = ExtResource("3_e8sqh")
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_7a3a2")
 
 [node name="TextureRect" type="TextureRect" parent="Button3"]
 layout_mode = 0
@@ -88,15 +102,20 @@ texture = ExtResource("7_5r0kh")
 layout_mode = 0
 offset_right = 174.0
 offset_bottom = 76.0
+label_settings = SubResource("LabelSettings_nucso")
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 59.0
+offset_bottom = 49.0
+text = "+1"
+label_settings = SubResource("LabelSettings_7a3a2")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -181.0
+offset_right = 181.0
 offset_bottom = 27.0
-grow_horizontal = 0
 max_value = 60.0
 fill_mode = 1
 show_percentage = false
