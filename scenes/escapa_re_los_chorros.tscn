@@ -1,5 +1,23 @@
-[gd_scene format=3 uid="uid://b37x82s6ilrst"]
+[gd_scene load_steps=3 format=3 uid="uid://b37x82s6ilrst"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1whs"]
+size = Vector2(1152.5, 83.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msfxj"]
+size = Vector2(1154, 84)
 
 [node name="EscapaDeLosChorros" type="Node2D"]
 
 [node name="player" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(574.75, 42.25)
+shape = SubResource("RectangleShape2D_q1whs")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(579, 603)
+shape = SubResource("RectangleShape2D_msfxj")

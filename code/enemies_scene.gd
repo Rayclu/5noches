@@ -2,9 +2,10 @@ extends Node2D
 
 var actualPosition
 var type
+var enemies
 const TYPES_PEOPLE = ["moto", "cobre", "resorte", "testigo", "client"]
 const ENEMIES_ROUTES = {
-	"moto": ["esquina","reja","screamer"], # <-- screamer = partida perdida
+	"moto": ["reja","screamer"], # <-- screamer = partida perdida
 	"cobre": ["","","screamer"],
 	"resorte": ["", "screamer"],
 	"testigo": ["","screamer"] # <-- acá tendrían que ir las camaras en las que pueden aparecer, creo
@@ -16,8 +17,17 @@ var Actual_ubication = ""
 func moveEnemy(typ:String, index: int = -1) -> Array:
 	actualPosition = ENEMIES_ROUTES[typ][( randi() % len(ENEMIES_ROUTES[typ]) ) if (index == -1) else  index ] 
 	return actualPosition
+func get_enemy():
+	return type
+
+func get_actualPos():
+	return Actual_ubication
+	
+
 func _ready() -> void:
-	var num = randi() % 100
-	moveEnemy(self.type, 0)
+	pass
+	#type = TYPES_PEOPLE[randi() % 4]
+	#print("enemy type ", type)
+	#moveEnemy(self.type, 0)
 	
 	
