@@ -14,8 +14,8 @@ const FRIEND_ROUTE = ["reja"]
 var Actual_ubication = ""
 
 
-func moveEnemy(typ:String, index: int = -1) -> Array:
-	actualPosition = ENEMIES_ROUTES[typ][( randi() % len(ENEMIES_ROUTES[typ]) ) if (index == -1) else  index ] 
+func moveEnemy(index = -1) -> Array:
+	actualPosition = ENEMIES_ROUTES[type][( randi() % len(ENEMIES_ROUTES[type]) ) if (index == -1) else  index ] 
 	return actualPosition
 func get_enemy():
 	return type
@@ -23,9 +23,10 @@ func get_enemy():
 func get_actualPos():
 	return Actual_ubication
 	
-
-func _ready() -> void:
-	pass
+func init_enemy(t:String):
+	type = t
+#func _ready() -> void:
+	#type = 
 	#type = TYPES_PEOPLE[randi() % 4]
 	#print("enemy type ", type)
 	#moveEnemy(self.type, 0)
