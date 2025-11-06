@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdtq25ijhiaa3"]
 
 [ext_resource type="Script" uid="uid://dae01qrni0mu2" path="res://code/CamerasControllerHUD.gd" id="1_wc5e5"]
-[ext_resource type="Script" path="res://code/node.gd" id="2_u6o08"]
+[ext_resource type="Script" uid="uid://brnv4m5u7js06" path="res://code/node.gd" id="2_u6o08"]
 [ext_resource type="Script" uid="uid://dotmdc2kywt6g" path="res://code/moneyControllerHUD.gd" id="2_wc5e5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wc5e5"]
@@ -97,17 +97,38 @@ grow_vertical = 0
 label_settings = SubResource("LabelSettings_wc5e5")
 vertical_alignment = 2
 
-[node name="Node" type="Control" parent="."]
+[node name="PRUEBAS" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
 script = ExtResource("2_u6o08")
 
-[node name="Button" type="Button" parent="Node"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="Button" type="Button" parent="PRUEBAS"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -49.0
+offset_right = 105.0
+offset_bottom = 4.0
+grow_vertical = 2
+action_mode = 0
 
-[node name="Button2" type="Button" parent="Node"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="Button2" type="Button" parent="PRUEBAS"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -48.0
+offset_bottom = 4.0
+grow_horizontal = 0
+grow_vertical = 2
+action_mode = 0

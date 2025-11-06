@@ -1,5 +1,6 @@
 extends Node
 var peopleSacene = preload("res://scenes/peopleScene.tscn") 
+var scene = load("res://Minigames/Scenes/Buttons_minigames.tscn")
 @onready var CAMS = $cameras
 var current_night: int = 1
 var energy:int
@@ -13,17 +14,13 @@ const ENEMIES = {
 var enemies = [] 
 var money: int
 
-func _ready() -> void:
-	#for i in range(0, 2):
-	self.energy = 100
-	self.money = 0
-	
-
 func move_enemies() -> bool: 
-	return ENEMIES[current_night] <= (randi_range(0, ENEMIES[str(current_night)]))
-
+	return 1
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_accept"):
+		print("hola")
+		get_tree().change_scene_to_packed(scene)
 	for enem in ENEMIES: 
 		if(move_enemies()):
 			
