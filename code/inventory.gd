@@ -1,4 +1,5 @@
 extends Panel
+
 func _process(delta: float) -> void:
 	if Input.get_current_cursor_shape() == CURSOR_FORBIDDEN:
 		DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)

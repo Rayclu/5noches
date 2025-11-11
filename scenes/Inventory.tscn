@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b0ueeda5tt3fb" path="res://code/inventory.gd" id="1_brmsw"]
 [ext_resource type="Script" uid="uid://bmbi548ybyyr6" path="res://code/itemslot.gd" id="1_elp5n"]
-[ext_resource type="Texture2D" uid="uid://d2owa0hvq0ht5" path="res://assets/Untitled.jpeg" id="1_kh8if"]
+[ext_resource type="Script" uid="uid://danab37c1kvp8" path="res://code/ITEMS_INV_CLASS.gd" id="2_njucy"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -42,6 +42,7 @@ layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 9
+script = ExtResource("2_njucy")
 
 [node name="Itemslot" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -56,7 +57,6 @@ anchor_right = 0.916667
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_kh8if")
 expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -72,7 +72,6 @@ offset_left = -40.0
 offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "10"
 horizontal_alignment = 2
 vertical_alignment = 3
 
