@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw268tgijhim0"
-path="res://.godot/imported/asset_soda.png-5c0e3ce5d6792dfebe6334a64a4360dd.ctex"
+uid="uid://b4lhmkpb8afsf"
+path="res://.godot/imported/alfajor.png-2c1044cbcfea15782c31d64f022c16d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/asset_soda.png"
-dest_files=["res://.godot/imported/asset_soda.png-5c0e3ce5d6792dfebe6334a64a4360dd.ctex"]
+source_file="res://assets/alfajor.png"
+dest_files=["res://.godot/imported/alfajor.png-2c1044cbcfea15782c31d64f022c16d7.ctex"]
 
 [params]
 

@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://btq72mdddp38g"]
+[gd_scene load_steps=6 format=3 uid="uid://btq72mdddp38g"]
 
+[ext_resource type="Script" uid="uid://buodaxepeqdhj" path="res://scenes/HandlerInput.gd" id="1_7uqmy"]
 [ext_resource type="Script" uid="uid://b0ueeda5tt3fb" path="res://code/inventory.gd" id="1_brmsw"]
 [ext_resource type="Script" uid="uid://bmbi548ybyyr6" path="res://code/itemslot.gd" id="1_elp5n"]
+[ext_resource type="Script" uid="uid://be78sqlgjkove" path="res://code/BuyPanel.gd" id="2_7uqmy"]
 [ext_resource type="Script" uid="uid://danab37c1kvp8" path="res://code/ITEMS_INV_CLASS.gd" id="2_njucy"]
 
 [node name="Control" type="Control"]
@@ -9,10 +11,59 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -35.0
+offset_top = -68.0
+offset_right = -35.0
+offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_7uqmy")
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 103.0
+offset_top = -53.0
+offset_right = 249.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+placeholder_text = "Enter the amount"
+alignment = 1
+max_length = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/LineEdit"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.116
+anchor_top = -0.613
+anchor_right = -0.116
+anchor_bottom = -0.613
+offset_left = -0.0639992
+offset_top = -48.997
+offset_right = 226.936
+offset_bottom = 0.00300026
+text = "Ingresa un numero
+ menor a la cantidad de stock"
+
+[node name="Label2" type="Label" parent="CanvasLayer/LineEdit"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.034
+anchor_top = -0.484
+anchor_right = -0.034
+anchor_bottom = -0.484
+offset_left = -9.036
+offset_top = -51.996
+offset_right = 281.964
+offset_bottom = -2.996
+text = "Arrastre un producto 
+hacia el recuedro para restar su stock"
 
 [node name="Inventory" type="Panel" parent="CanvasLayer"]
 anchors_preset = 8
@@ -27,6 +78,42 @@ offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_brmsw")
+
+[node name="SelecterItem" type="Panel" parent="CanvasLayer/Inventory"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+offset_left = 232.0
+offset_top = 268.0
+offset_right = 368.0
+offset_bottom = 394.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_7uqmy")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/SelecterItem"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0833333
+anchor_right = 0.916667
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="CanvasLayer/Inventory/SelecterItem"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+vertical_alignment = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Inventory"]
 layout_mode = 0

@@ -8,7 +8,7 @@ func _notification(what: int) -> void:
 	if what == Node.NOTIFICATION_DRAG_BEGIN:
 		data_bk = get_viewport().gui_get_drag_data()
 	if what == Node.NOTIFICATION_DRAG_END:
-		if !is_drag_successful():
+		if not is_drag_successful():
 			if data_bk:
 				for data in data_bk:
 					data.show()
