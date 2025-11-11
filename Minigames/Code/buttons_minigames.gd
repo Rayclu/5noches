@@ -12,7 +12,7 @@ func _ready() -> void:
 	ProgrssBar.value = GameTimer.time_left
 	ProgrssBar.max_value = 60
 	ConfigBttns()
-	LEVELS.changeStats()
+
 
 func _process(delta: float) -> void:
 	get_node("Label").text = 'points: ' + str(points)
