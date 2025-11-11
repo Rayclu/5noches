@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://blfhcj15do7bg"]
+[gd_scene load_steps=2 format=3 uid="uid://blfhcj15do7bg"]
+
+[ext_resource type="Script" uid="uid://bo5lbhgd0kdgc" path="res://code/enemies_scene.gd" id="1_fs7tl"]
 
 [node name="PeopleScene" type="Node2D"]
+script = ExtResource("1_fs7tl")

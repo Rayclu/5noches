@@ -1,29 +1,43 @@
 extends Node
-var peopleSacene = preload("res://scenes/peopleScene.tscn") 
-var scene = load("res://Minigames/Scenes/Buttons_minigames.tscn")
-@onready var CAMS = $cameras
-var current_night: int = 1
-var energy:int
-const ENEMIES = {
-	"1": 30,
-	"2": 50,
-	"3": 70,
-	"4": 90,
+#--------------------------------------------------------------
+const NIGHTS_MOVEMENT = {
+	1: 30,
+	2: 50,
+	3: 70,
+	4: 90,
 	"Custom": 99
 }
-var enemies = [] 
-var money: int
-
-func move_enemies() -> bool: 
-	return 1
-
+#--------------------------------------------------------------
+@onready var CAMS = $cameras
+@onready var enemies_node = $enemies
+#--------------------------------------------------------------
+@onready var minigames_node = $minigames
+var people_scene = preload("res://scenes/peopleScene.tscn")
+var enemy_scene = preload("res://scenes/enemiesScene.tscn")
+#--------------------------------------------------------------
+var current_night: int = 1
+var energy: int = 100
+var money: int = 0
+#--------------------------------------------------------------
+func _ready() -> void:
+	Global.set_types()
+#--------------------------------------------------------------
+func kill_children(node) -> void:
+	for child in node.get_children():
+		child.queue_free()
+#--------------------------------------------------------------
+func can_move_enemies() -> bool:
+	var movement_chance = NIGHTS_MOVEMENT.get(current_night, 30)
+	return randi_range(0, 100) <= movement_chance
+#--------------------------------------------------------------
+func instantiate_mini_play() -> void:
+	if not minigames_node:
+		push_error("No se encontró el nodo 'minigames'")
+		return
+	print("Instanciando minijuego...")
+#-------------------------------------------------------------
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept"):
-		print("hola")
-		get_tree().change_scene_to_packed(scene)
-	for enem in ENEMIES: 
-		if(move_enemies()):
-			
-			pass
-		else:
+	Global.show_enms()
+	for enemy in Global.enemies:
+		if can_move_enemies():
 			pass
