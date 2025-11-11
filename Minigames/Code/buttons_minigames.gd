@@ -12,7 +12,6 @@ func _ready() -> void:
 	ProgrssBar.value = GameTimer.time_left
 	ProgrssBar.max_value = 60
 	ConfigBttns()
-	LEVELS.changeStats()
 
 func _process(delta: float) -> void:
 	get_node("Label").text = 'points: ' + str(points)
@@ -21,7 +20,6 @@ func _process(delta: float) -> void:
 		if nodes is Timer:
 			timers+=1
 		if timers==4 && get_child(get_child_count()-2) is Timer:
-			print_tree_pretty()
 			remove_child(get_child(get_child_count()-2))
 			timers = 0
 	if GameTimer:

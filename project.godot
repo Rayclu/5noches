@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://code/Global.gd"
 LEVELS="*res://code/Levels.gd"
 ECONOMY="*res://code/Economy.gd"
+INVENTORY="*res://code/Inventory.gd"
 
 [file_customization]
 
