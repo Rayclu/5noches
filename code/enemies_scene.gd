@@ -19,7 +19,7 @@ func moveEnemy(index = -1) -> Array:
 	return actualPosition
 func get_enemy():
 	return type
-
+	
 func get_actualPos():
 	return Actual_ubication
 	

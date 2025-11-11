@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc2q25atox3ri"]
+
+[ext_resource type="Script" uid="uid://ddjncvs02g4js" path="res://code/mini_games_scene.gd" id="1_i6nku"]
+[ext_resource type="Texture2D" uid="uid://d27v87b8tcn63" path="res://assets/Untitled.png" id="2_8yair"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agau7"]
+size = Vector2(22, 133)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8yair"]
+size = Vector2(20, 162)
+
+[node name="Obstaculos" type="Area2D"]
+script = ExtResource("1_i6nku")
+
+[node name="Upper" type="Sprite2D" parent="."]
+position = Vector2(0.999992, -57)
+scale = Vector2(0.114943, 0.891892)
+texture = ExtResource("2_8yair")
+
+[node name="Lower" type="Sprite2D" parent="."]
+position = Vector2(2, 153)
+scale = Vector2(0.114942, 1.05405)
+texture = ExtResource("2_8yair")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -56.5)
+shape = SubResource("RectangleShape2D_agau7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(2, 154)
+shape = SubResource("RectangleShape2D_8yair")
