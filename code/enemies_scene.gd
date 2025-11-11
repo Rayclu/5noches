@@ -15,6 +15,7 @@ var Actual_ubication = ""
 
 func moveEnemy(typ:String) -> Array:
 	return ENEMIES_ROUTES[typ][randi() % len(ENEMIES_ROUTES[typ])]
+	
 func _ready() -> void:
 	var num = randi() % 100
 	#actualPosition = moveEnemy(self.typ) if num >= 50 else ENEMIES_ROUTES[type][0]

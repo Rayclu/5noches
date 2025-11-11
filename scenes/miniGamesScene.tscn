@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp3xdpd233ppo"]
+
+[ext_resource type="Texture2D" path="res://assets/sprite_moto.png" id="1_x1h3j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_faw0r"]
+size = Vector2(228, 84)
+
+[node name="MiniGamesScene" type="Node"]
+
+[node name="motito" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="motito"]
+position = Vector2(133, 386)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="motito/CharacterBody2D"]
+position = Vector2(0, 27)
+shape = SubResource("RectangleShape2D_faw0r")
+metadata/_edit_group_ = true
+
+[node name="SpriteMoto" type="Sprite2D" parent="motito/CharacterBody2D"]
+position = Vector2(9.53674e-07, 25)
+scale = Vector2(3.4058, 1.84444)
+texture = ExtResource("1_x1h3j")
+metadata/_edit_group_ = true
+
+[node name="obs_timer" type="Timer" parent="."]
+wait_time = 1.5

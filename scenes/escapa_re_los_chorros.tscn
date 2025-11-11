@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2y8plqh4agg7"]
+
+[ext_resource type="Script" path="res://code/escapa_re_los_chorros.gd" id="1_e27f5"]
+[ext_resource type="PackedScene" path="res://scenes/obstaculos.tscn" id="2_l8c4x"]
+[ext_resource type="Texture2D" path="res://assets/massa.jpeg" id="3_l8c4x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q1whs"]
+size = Vector2(1152.5, 83.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msfxj"]
+size = Vector2(1154, 84)
+
+[node name="EscapaDeLosChorros" type="Node"]
+script = ExtResource("1_e27f5")
+obs_scene = ExtResource("2_l8c4x")
+
+[node name="player" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(574.75, 42.25)
+shape = SubResource("RectangleShape2D_q1whs")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(579, 603)
+shape = SubResource("RectangleShape2D_msfxj")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(578, 601.5)
+scale = Vector2(6.6092, 0.506757)
+texture = ExtResource("3_l8c4x")
+
+[node name="obs_timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="obs_timer" to="." method="_on_obs_timer_timeout"]
