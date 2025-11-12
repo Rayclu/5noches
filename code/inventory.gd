@@ -13,6 +13,6 @@ func _notification(what: int) -> void:
 				for data in data_bk:
 					data.show()
 					data_bk=null
-					
+
 #ya termine de hacer todo el diseño pero me faltaria añadir en base a los objetos creados
 # por la clase añadirlos en el nivel con su respectivo stock, eto

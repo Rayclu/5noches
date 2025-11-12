@@ -7,12 +7,13 @@ var RefObj
 func _ready():
 	Inputer.connect("text_submitted", Callable(self, "_on_text_submitted"))
 	label.hide()
-	print_tree_pretty()
 
 func _process(delta: float) -> void:
 	if RefObj:
 		label_2.hide()
+		label.show()
 	else:
+		label.hide()
 		label_2.show()
 
 func _on_text_submitted(text):

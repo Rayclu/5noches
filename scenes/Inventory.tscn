@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://btq72mdddp38g"]
+[gd_scene load_steps=7 format=3 uid="uid://btq72mdddp38g"]
 
-[ext_resource type="Script" uid="uid://buodaxepeqdhj" path="res://scenes/HandlerInput.gd" id="1_7uqmy"]
+[ext_resource type="Script" uid="uid://buodaxepeqdhj" path="res://code/HandlerInput.gd" id="1_7uqmy"]
 [ext_resource type="Script" uid="uid://b0ueeda5tt3fb" path="res://code/inventory.gd" id="1_brmsw"]
 [ext_resource type="Script" uid="uid://bmbi548ybyyr6" path="res://code/itemslot.gd" id="1_elp5n"]
 [ext_resource type="Script" uid="uid://be78sqlgjkove" path="res://code/BuyPanel.gd" id="2_7uqmy"]
-[ext_resource type="Script" uid="uid://danab37c1kvp8" path="res://code/ITEMS_INV_CLASS.gd" id="2_njucy"]
+[ext_resource type="Script" uid="uid://danab37c1kvp8" path="res://code/ConfigPanels.gd" id="2_njucy"]
+[ext_resource type="Texture2D" uid="uid://bhp2ccmrf751b" path="res://assets/padlock.png" id="6_5d712"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -162,6 +163,19 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
+
 [node name="Itemslot2" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -192,6 +206,19 @@ grow_horizontal = 0
 grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
+
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot2"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
 
 [node name="Itemslot3" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -224,6 +251,19 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot3"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
+
 [node name="Itemslot4" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -254,6 +294,19 @@ grow_horizontal = 0
 grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
+
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot4"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
 
 [node name="Itemslot5" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -286,6 +339,19 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot5"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
+
 [node name="Itemslot6" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -316,6 +382,19 @@ grow_horizontal = 0
 grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
+
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot6"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
 
 [node name="Itemslot7" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -348,6 +427,19 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot7"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
+
 [node name="Itemslot8" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -378,6 +470,19 @@ grow_horizontal = 0
 grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
+
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot8"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
 
 [node name="Itemslot9" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -410,6 +515,19 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot9"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
+
 [node name="Itemslot10" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -440,6 +558,19 @@ grow_horizontal = 0
 grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
+
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot10"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
 
 [node name="Itemslot11" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -472,6 +603,19 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot11"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
+
 [node name="Itemslot12" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -502,6 +646,19 @@ grow_horizontal = 0
 grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
+
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot12"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
 
 [node name="Itemslot13" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -534,6 +691,19 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot13"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
+
 [node name="Itemslot14" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -564,6 +734,19 @@ grow_horizontal = 0
 grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
+
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot14"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
 
 [node name="Itemslot15" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -596,6 +779,19 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot15"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
+
 [node name="Itemslot16" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -626,6 +822,19 @@ grow_horizontal = 0
 grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
+
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot16"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
 
 [node name="Itemslot17" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -658,6 +867,19 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot17"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")
+
 [node name="Itemslot18" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -688,3 +910,16 @@ grow_horizontal = 0
 grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
+
+[node name="Candado" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot18"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_5d712")

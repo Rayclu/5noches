@@ -3,17 +3,24 @@ extends GridContainer
 
 func _ready() -> void:
 	AddGridWitClass()
-	
+
 func _process(delta: float) -> void:
 	UpdateValues()
-	
+
 func AddGridWitClass():
 	var i = 0
 	for Classitem in LEVELS.items_per_level[LEVELS.level]:
 		var itemSlot = get_child(i).get_children()
 		itemSlot[0].texture = load(Classitem.image)
 		itemSlot[1].text = str(Classitem.stock)
+		itemSlot[2].hide()
 		i+=1
+
+	for child in get_children():#elimina todas las casillas sin imagen. futuramente añadir candado
+		if child.get_child(0).texture==null:
+			var normal = StyleBoxFlat.new()
+			normal.bg_color = Color(0,0,0) # gris oscuro
+			child.add_theme_stylebox_override("panel",normal)
 
 func UpdateValues():
 	var ObjectSelected = get_node("../../..").RefObj

@@ -1,10 +1,12 @@
 extends Node
 var InitialMoney= 5000 # ECONOMY._get_money()
-var assets = {"pan":"res://assets/pan.png","coca":"res://assets/coca-removebg-preview.png","alfajor":"res://assets/alfajor.png","fiambre":"res://assets/fiambre.png","soda":"res://assets/soda.png"}
+var assets = {"pan":"res://assets/pan.png","coca":"res://assets/coca-removebg-preview.png","alfajor":"res://assets/alfajor.png","fiambre":"res://assets/fiambre.png","soda":"res://assets/soda.png","galletitas":"res://assets/Galletitas.png","caramelos":"res://assets/caramelos.png"
+,"empanada":"res://assets/empanada.png","sanguche":"res://assets/sanguche.png","pizza":"res://assets/pizza.png","cafe":"res://assets/cafe.png"}
 var dificulty = 1
-var level = 1
+var level = 2
 var items_per_level = { 1:[CrteFd("pan",100,assets["pan"],11),CrteFd("coca",200,assets["coca"],12),CrteFd("alfajor",200,assets["alfajor"],20),CrteFd("fiambre",200,assets["fiambre"],300),CrteFd("soda",200,assets["soda"],40)]
-,2:[CrteFd("pan",100,assets["pan"],11)],3:[],4:[]} #a definir items con claudio
+,2:[CrteFd("pan",100,assets["pan"],11),CrteFd("caramelos",100,assets["caramelos"],11),CrteFd("empanada",100,assets["empanada"],11),CrteFd("galletitas",100,assets["galletitas"],11),
+CrteFd("sanguche",100,assets["sanguche"],11),CrteFd("pizza",100,assets["pizza"],11),CrteFd("cafe",100,assets["cafe"],11)],3:[],4:[]} #a definir items con claudio
 
 func changeStats(IndexValue):
 	InitialMoney*=IndexValue
@@ -12,6 +14,6 @@ func changeStats(IndexValue):
 func PassDificulty(new):
 	dificulty+=new
 
-func CrteFd(name,value,img,stock):
+func CrteFd(nombre,value,img,stock):
 	print(items_per_level)
-	return comida.new().updateValues(name,value,img,stock)
+	return comida.new().updateValues(nombre,value,img,stock)

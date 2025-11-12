@@ -1,6 +1,7 @@
 extends Panel
 
 @onready var texture_rect: TextureRect = $TextureRect
+@onready var candado: TextureRect = $Candado
 @onready var label: Label = $Label
 
 func _get_drag_data(at_position: Vector2) -> Variant:
@@ -10,6 +11,7 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	var trasfer = Control.new()
 	trasfer.add_child(preview)
 	preview.position -= Vector2(25,25)
+	preview.rotation_degrees = -15
 	preview.self_modulate = Color.TRANSPARENT
 	trasfer.modulate = Color(trasfer.modulate,0.5)
 	texture_rect.hide()
@@ -18,10 +20,12 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	return [texture_rect,label]
 
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
-	return true
+	if texture_rect.texture || candado.visible!=true:
+		return true
+	else:
+		return false
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	print(data,_at_position)
 	var temp = texture_rect.texture
 	var labl = label.text
 	texture_rect.show()
