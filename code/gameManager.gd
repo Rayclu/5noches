@@ -1,5 +1,7 @@
 extends Node
 #--------------------------------------------------------------
+signal GameReady
+#--------------------------------------------------------------
 const NIGHTS_MOVEMENT = {
 	1: 30,
 	2: 50,
@@ -10,8 +12,8 @@ const NIGHTS_MOVEMENT = {
 #--------------------------------------------------------------
 @onready var CAMS = $cameras
 @onready var enemies_node = $enemies
-#--------------------------------------------------------------
 @onready var minigames_node = $minigames
+#--------------------------------------------------------------
 var people_scene = preload("res://scenes/peopleScene.tscn")
 var enemy_scene = preload("res://scenes/enemiesScene.tscn")
 #--------------------------------------------------------------
@@ -21,6 +23,7 @@ var money: int = 0
 #--------------------------------------------------------------
 func _ready() -> void:
 	Global.set_types()
+	$player.add_child()
 #--------------------------------------------------------------
 func kill_children(node) -> void:
 	for child in node.get_children():
