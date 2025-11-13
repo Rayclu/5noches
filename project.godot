@@ -24,6 +24,7 @@ SHORCUTS="*res://code/shor_cuts.gd"
 
 folder_colors={
 "res://Minigames/": "gray",
+"res://Shader/": "blue",
 "res://assets/": "pink",
 "res://cameras/": "yellow",
 "res://code/": "red",
@@ -35,6 +36,11 @@ folder_colors={
 "Shift + C"={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":true,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":67,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
+e={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 
