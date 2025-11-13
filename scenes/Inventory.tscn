@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://btq72mdddp38g"]
+[gd_scene load_steps=8 format=3 uid="uid://btq72mdddp38g"]
 
 [ext_resource type="Script" uid="uid://buodaxepeqdhj" path="res://code/HandlerInput.gd" id="1_7uqmy"]
 [ext_resource type="Script" uid="uid://b0ueeda5tt3fb" path="res://code/inventory.gd" id="1_brmsw"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://be78sqlgjkove" path="res://code/BuyPanel.gd" id="2_7uqmy"]
 [ext_resource type="Script" uid="uid://danab37c1kvp8" path="res://code/ConfigPanels.gd" id="2_njucy"]
 [ext_resource type="Texture2D" uid="uid://bhp2ccmrf751b" path="res://assets/padlock.png" id="6_5d712"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d712"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -21,6 +24,13 @@ grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("1_7uqmy")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer"]
 anchors_preset = 7
@@ -78,6 +88,7 @@ offset_right = 298.0
 offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5d712")
 script = ExtResource("1_brmsw")
 
 [node name="SelecterItem" type="Panel" parent="CanvasLayer/Inventory"]

@@ -15,5 +15,4 @@ func PassDificulty(new):
 	dificulty+=new
 
 func CrteFd(nombre,value,img,stock):
-	print(items_per_level)
 	return comida.new().updateValues(nombre,value,img,stock)

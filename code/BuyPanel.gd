@@ -23,14 +23,11 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 func _notification(what: int) -> void:
 	if what == Node.NOTIFICATION_DRAG_END:
 		if is_drag_successful():
-			print("gola")
 			if texture_rect.texture:
-				print("hohohoho")
 				for objects in LEVELS.items_per_level[LEVELS.level]:
 					if texture_rect.texture.load_path == load(objects.image).load_path:
 						Canvaslayer.getObject(objects)
 			else:
-				print("askdjaksdjaksdj")
 				Canvaslayer.getObject(null)
 
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:

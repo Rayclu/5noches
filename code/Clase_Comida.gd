@@ -12,4 +12,4 @@ func updateValues(nombre,money,asset,amount):
 	return self
 
 func printe():
-	print("ola")
+	pass

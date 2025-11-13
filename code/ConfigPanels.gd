@@ -14,12 +14,15 @@ func AddGridWitClass():
 		itemSlot[0].texture = load(Classitem.image)
 		itemSlot[1].text = str(Classitem.stock)
 		itemSlot[2].hide()
+		var normal = StyleBoxFlat.new()
+		normal.bg_color = Color(0.3,0.3,0.3)
+		get_child(i).add_theme_stylebox_override("panel",normal)
 		i+=1
 
-	for child in get_children():#elimina todas las casillas sin imagen. futuramente añadir candado
+	for child in get_children():
 		if child.get_child(0).texture==null:
 			var normal = StyleBoxFlat.new()
-			normal.bg_color = Color(0,0,0) # gris oscuro
+			normal.bg_color = Color(0.05,0.05,0.05) # gris oscuro
 			child.add_theme_stylebox_override("panel",normal)
 
 func UpdateValues():
