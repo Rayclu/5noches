@@ -16,6 +16,7 @@ func AddGridWitClass():
 		itemSlot[2].hide()
 		var normal = StyleBoxFlat.new()
 		normal.bg_color = Color(0.3,0.3,0.3)
+		normal.set_corner_radius_all(15)
 		get_child(i).add_theme_stylebox_override("panel",normal)
 		i+=1
 

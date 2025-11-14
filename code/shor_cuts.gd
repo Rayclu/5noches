@@ -4,6 +4,7 @@ signal OpenMenu
 signal OpenCameras
 var image 
 var InventoryActive = false
+var InventoryFinished
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("e") && !InventoryActive: #e
@@ -12,6 +13,8 @@ func _input(event: InputEvent) -> void:
 			get_tree().change_scene_to_file("res://scenes/Inventory.tscn")
 			
 		elif Input.is_action_just_pressed("e") && InventoryActive:
+			InventoryFinished = get_node("/root/Control/CanvasLayer").LIST_OF_ELEMENTS_SELECTEDS
+
 			get_tree().change_scene_to_file("res://Minigames/Scenes/Buttons_minigames.tscn")
 			InventoryActive=false
 			
