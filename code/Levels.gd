@@ -1,7 +1,7 @@
 extends Node
+var moneyPerLevel = {1:1000,2:2500,3:4500,4:7000}
 var InitialMoney= 5000 # ECONOMY._get_money()
-var assets = {"pan":"res://assets/pan.png","coca":"res://assets/coca-removebg-preview.png","alfajor":"res://assets/alfajor.png","fiambre":"res://assets/fiambre.png","soda":"res://assets/soda.png","galletitas":"res://assets/Galletitas.png","caramelos":"res://assets/caramelos.png"
-,"empanada":"res://assets/empanada.png","sanguche":"res://assets/sanguche.png","pizza":"res://assets/pizza.png","cafe":"res://assets/cafe.png"}
+var assets = {"pan":"res://assets/pan.png","coca":"res://assets/coca-removebg-preview.png","alfajor":"res://assets/alfajor.png","fiambre":"res://assets/fiambre.png","soda":"res://assets/soda.png","galletitas":"res://assets/Galletitas.png","caramelos":"res://assets/caramelos.png","empanada":"res://assets/empanada.png","sanguche":"res://assets/sanguche.png","pizza":"res://assets/pizza.png","cafe":"res://assets/cafe.png"}
 var dificulty = 1
 var level = 2
 var ClientRqueriment

@@ -14,7 +14,7 @@ const FRIEND_ROUTE = ["reja"]
 var Actual_ubication = ""
 
 
-func moveEnemy(index = -1) -> Array:
+func move(index = -1) -> Array:
 	actualPosition = ENEMIES_ROUTES[type][( randi() % len(ENEMIES_ROUTES[type]) ) if (index == -1) else  index ] 
 	return actualPosition
 func get_enemy():

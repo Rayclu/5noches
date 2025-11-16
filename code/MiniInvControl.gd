@@ -11,12 +11,25 @@ func UpdatePanels(): #funcion que se encarga de actualizar los elementos dentro 
 		var i = 0
 		for child in get_children():
 			if len(listaElementsChosed) == i:
-				return
-			var Items = get_child(i).get_children()
+				break
 			child.get_children()[0].texture = load(listaElementsChosed[i]["img"])
 			child.get_children()[1].text = str(listaElementsChosed[i]["CuSelect"])
 			var normal = StyleBoxFlat.new()
 			normal.bg_color = Color(0.3,0.3,0.3)
 			normal.set_corner_radius_all(20)
 			child.add_theme_stylebox_override("panel",normal)
+			i+=1
+	var i = 0
+	for child in get_children():
+
+		if i >= len(listaElementsChosed):
+			print("hola me comp´li???"," -- ",child)
+			child.get_children()[0].texture = null
+			child.get_children()[1].text = ""
+			var normal = StyleBoxFlat.new()
+			normal.bg_color = Color8(22,22,22)
+			normal.set_corner_radius_all(25)
+			child.add_theme_stylebox_override("panel",normal)
+		else:
+			print("no,. incrementate")
 			i+=1

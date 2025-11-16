@@ -23,6 +23,7 @@ Global="*res://code/Global.gd"
 LEVELS="*res://code/Levels.gd"
 ECONOMY="*res://code/Economy.gd"
 SHORCUTS="*res://code/shor_cuts.gd"
+HUD="*res://scenes/HUD.tscn"
 
 [file_customization]
 
