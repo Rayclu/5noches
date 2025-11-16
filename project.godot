@@ -13,6 +13,10 @@ config_version=5
 config/name="5noches"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout=""
+
 [autoload]
 
 Global="*res://code/Global.gd"

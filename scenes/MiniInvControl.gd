@@ -1,9 +1,9 @@
 extends GridContainer
  
-func _process(delta: float) -> void:
+func _process(delta):
 	UpdatePanels()
-	
-func UpdatePanels():
+
+func UpdatePanels(): #funcion que se encarga de actualizar los elementos dentro de los paneles en el inventario que hace el usuario
 	var listaElementsChosed = get_node("../../..").LIST_OF_ELEMENTS_SELECTEDS
 	if len(listaElementsChosed) == 0:
 		return
@@ -13,7 +13,6 @@ func UpdatePanels():
 			if len(listaElementsChosed) == i:
 				return
 			var Items = get_child(i).get_children()
-			print(listaElementsChosed,"holaaa#")
 			child.get_children()[0].texture = load(listaElementsChosed[i]["img"])
 			child.get_children()[1].text = str(listaElementsChosed[i]["CuSelect"])
 			var normal = StyleBoxFlat.new()

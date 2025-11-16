@@ -1,12 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://btq72mdddp38g"]
+[gd_scene load_steps=16 format=3 uid="uid://btq72mdddp38g"]
 
-[ext_resource type="Script" uid="uid://buodaxepeqdhj" path="res://code/HandlerInput.gd" id="1_7uqmy"]
+[ext_resource type="Script" uid="uid://buodaxepeqdhj" path="res://code/HandlerMainLogic.gd" id="1_7uqmy"]
 [ext_resource type="Script" uid="uid://b0ueeda5tt3fb" path="res://code/inventory.gd" id="1_brmsw"]
 [ext_resource type="Script" uid="uid://bmbi548ybyyr6" path="res://code/itemslot.gd" id="1_elp5n"]
 [ext_resource type="Shader" uid="uid://dmrab3cggpqpw" path="res://Shader/blur_shader.gdshader" id="2_7f7tj"]
 [ext_resource type="Script" uid="uid://be78sqlgjkove" path="res://code/BuyPanel.gd" id="2_7uqmy"]
 [ext_resource type="Script" uid="uid://danab37c1kvp8" path="res://code/ConfigPanels.gd" id="2_njucy"]
 [ext_resource type="Script" uid="uid://dugqya2re53vx" path="res://scenes/MiniInvControl.gd" id="3_q3t5a"]
+[ext_resource type="Texture2D" uid="uid://yh8cr87wwrk2" path="res://assets/massa.jpeg" id="4_cexoc"]
+[ext_resource type="Script" uid="uid://clhiwd7ijwujv" path="res://scenes/DeleteButtonHandler.gd" id="4_f0lgf"]
 [ext_resource type="Script" uid="uid://yr15cpnk63nx" path="res://scenes/UserRequeriments.gd" id="4_yj0ni"]
 [ext_resource type="Texture2D" uid="uid://bhp2ccmrf751b" path="res://assets/padlock.png" id="6_5d712"]
 
@@ -38,10 +40,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -35.0
-offset_top = -68.0
-offset_right = -35.0
-offset_bottom = -68.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -56,6 +54,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="LimitArray" type="Label" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -485.0
+offset_top = -122.0
+offset_right = -195.0
+offset_bottom = -68.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "ha alcanzado la cantidad maxima
+de elemento a añadir en en inf"
+
 [node name="ClientRequerimetns" type="Label" parent="CanvasLayer"]
 anchors_preset = -1
 anchor_top = 0.65
@@ -65,6 +78,29 @@ offset_right = 175.0
 offset_bottom = 17.3
 grow_vertical = 2
 text = "Lo que el cliente pide:"
+
+[node name="CanExitInv?" type="Label" parent="CanvasLayer"]
+offset_left = 949.0
+offset_top = 427.0
+offset_right = 1149.0
+offset_bottom = 528.0
+text = "No Puede retirarte,
+ lo elegido no coincide
+ con lo que el cliente pide."
+
+[node name="FinishedButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -177.0
+offset_top = -108.0
+offset_right = -14.0
+offset_bottom = -77.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Continuar -->"
 
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer"]
 anchors_preset = 7
@@ -111,19 +147,7 @@ offset_bottom = -2.996
 text = "Arrastre un producto 
 hacia el recuedro para restar su stock"
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-anchors_preset = -1
-anchor_top = 0.809
-anchor_bottom = 0.809
-offset_top = 13.768
-offset_right = 198.0
-offset_bottom = 36.768
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "Elementos seleccionados:"
-
-[node name="Inventory2" type="Panel" parent="CanvasLayer"]
+[node name="UserChoiseInv" type="Panel" parent="CanvasLayer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -132,7 +156,20 @@ offset_right = 406.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_q3t5a")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Inventory2"]
+[node name="LabelElementsChosens" type="Label" parent="CanvasLayer/UserChoiseInv"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.809
+anchor_bottom = 0.809
+offset_top = -94.338
+offset_right = 198.0
+offset_bottom = -71.338
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Elementos seleccionados:"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UserChoiseInv"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -145,19 +182,20 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Inventory2/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UserChoiseInv/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 6
 script = ExtResource("3_q3t5a")
 
-[node name="Itemslot" type="Panel" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer"]
+[node name="Itemslot" type="Panel" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
+script = ExtResource("4_f0lgf")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -169,26 +207,45 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot"]
+[node name="Label" type="Label" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -23.0
+offset_right = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+vertical_alignment = 3
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
+offset_left = -24.0
+offset_top = -24.0
 grow_horizontal = 0
 grow_vertical = 0
-horizontal_alignment = 2
-vertical_alignment = 3
+action_mode = 0
+button_mask = 7
+keep_pressed_outside = true
+texture_normal = ExtResource("4_cexoc")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Itemslot2" type="Panel" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer"]
+[node name="Itemslot2" type="Panel" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
+script = ExtResource("4_f0lgf")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -200,26 +257,41 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot2"]
+[node name="Label" type="Label" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot2"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+vertical_alignment = 3
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot2"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
+offset_left = -24.0
+offset_top = -24.0
 grow_horizontal = 0
 grow_vertical = 0
-horizontal_alignment = 2
-vertical_alignment = 3
+action_mode = 0
+button_mask = 7
+keep_pressed_outside = true
+texture_normal = ExtResource("4_cexoc")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Itemslot3" type="Panel" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer"]
+[node name="Itemslot3" type="Panel" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
+script = ExtResource("4_f0lgf")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot3"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot3"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -231,26 +303,41 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot3"]
+[node name="Label" type="Label" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot3"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+vertical_alignment = 3
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot3"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
+offset_left = -24.0
+offset_top = -24.0
 grow_horizontal = 0
 grow_vertical = 0
-horizontal_alignment = 2
-vertical_alignment = 3
+action_mode = 0
+button_mask = 7
+keep_pressed_outside = true
+texture_normal = ExtResource("4_cexoc")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Itemslot4" type="Panel" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer"]
+[node name="Itemslot4" type="Panel" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
+script = ExtResource("4_f0lgf")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot4"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot4"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -262,26 +349,41 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot4"]
+[node name="Label" type="Label" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot4"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+vertical_alignment = 3
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot4"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
+offset_left = -24.0
+offset_top = -24.0
 grow_horizontal = 0
 grow_vertical = 0
-horizontal_alignment = 2
-vertical_alignment = 3
+action_mode = 0
+button_mask = 7
+keep_pressed_outside = true
+texture_normal = ExtResource("4_cexoc")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Itemslot5" type="Panel" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer"]
+[node name="Itemslot5" type="Panel" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
+script = ExtResource("4_f0lgf")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot5"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot5"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -293,26 +395,41 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot5"]
+[node name="Label" type="Label" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot5"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+vertical_alignment = 3
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot5"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
+offset_left = -24.0
+offset_top = -24.0
 grow_horizontal = 0
 grow_vertical = 0
-horizontal_alignment = 2
-vertical_alignment = 3
+action_mode = 0
+button_mask = 7
+keep_pressed_outside = true
+texture_normal = ExtResource("4_cexoc")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Itemslot6" type="Panel" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer"]
+[node name="Itemslot6" type="Panel" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
+script = ExtResource("4_f0lgf")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot6"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot6"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -324,21 +441,35 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory2/MarginContainer/GridContainer/Itemslot6"]
+[node name="Label" type="Label" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot6"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+vertical_alignment = 3
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot6"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -23.0
+offset_left = -24.0
+offset_top = -24.0
 grow_horizontal = 0
 grow_vertical = 0
-horizontal_alignment = 2
-vertical_alignment = 3
+action_mode = 0
+button_mask = 7
+keep_pressed_outside = true
+texture_normal = ExtResource("4_cexoc")
+ignore_texture_size = true
+stretch_mode = 0
 
-[node name="Inventory3" type="Panel" parent="CanvasLayer"]
+[node name="ClientRequeriments" type="Panel" parent="CanvasLayer"]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -348,7 +479,7 @@ offset_bottom = -122.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_q3t5a")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Inventory3"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/ClientRequeriments"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -361,19 +492,19 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Inventory3/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ClientRequeriments/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 6
 script = ExtResource("4_yj0ni")
 
-[node name="Itemslot" type="Panel" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer"]
+[node name="Itemslot" type="Panel" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -385,7 +516,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot"]
+[node name="Label" type="Label" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -399,12 +530,12 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
-[node name="Itemslot2" type="Panel" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer"]
+[node name="Itemslot2" type="Panel" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot2"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -416,7 +547,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot2"]
+[node name="Label" type="Label" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot2"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -430,12 +561,12 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
-[node name="Itemslot3" type="Panel" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer"]
+[node name="Itemslot3" type="Panel" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot3"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot3"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -447,7 +578,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot3"]
+[node name="Label" type="Label" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot3"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -461,12 +592,12 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
-[node name="Itemslot4" type="Panel" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer"]
+[node name="Itemslot4" type="Panel" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot4"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot4"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -478,7 +609,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot4"]
+[node name="Label" type="Label" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot4"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -492,12 +623,12 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
-[node name="Itemslot5" type="Panel" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer"]
+[node name="Itemslot5" type="Panel" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot5"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot5"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -509,7 +640,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot5"]
+[node name="Label" type="Label" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot5"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -523,12 +654,12 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
-[node name="Itemslot6" type="Panel" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer"]
+[node name="Itemslot6" type="Panel" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot6"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot6"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -540,7 +671,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="CanvasLayer/Inventory3/MarginContainer/GridContainer/Itemslot6"]
+[node name="Label" type="Label" parent="CanvasLayer/ClientRequeriments/MarginContainer/GridContainer/Itemslot6"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
