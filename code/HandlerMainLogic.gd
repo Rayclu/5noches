@@ -22,7 +22,7 @@ func _ready():
 	canExitInv.hide()
 	finished_button.hide()
 
-func _process(delta): #utilizo process para poder cambiar en timepo real la visualizacion de los labels para cada caso
+func _process(delta): #utilizo process para poder cambiar en timepo real la visualizacion de los labels para cada caso8
 	if len(LIST_OF_ELEMENTS_SELECTEDS)==6 && !isRefInListOfSelecteds():
 			LabelLimitStock.hide()
 			LabelLimitArray.show()
@@ -46,7 +46,7 @@ func _load_background(): #funcionq ue carga el fondo cuando se abre el inv
 		var tex = ImageTexture.create_from_image(SHORCUTS.image)
 		texture_rect.texture = tex
 
-func _on_text_changed(new_text): #funcion que se ejecuta cuando el texto del LineEdit se cambia. utilizada para verificar que los caracteres sean solo numeros
+func _on_text_changed(new_text): #funcion que se ejecuta cuando el texto del LineEdit se cambia
 	if len(new_text) == 1 && int(new_text) == 0:
 			Inputer.text = ""
 			return
@@ -59,10 +59,10 @@ func _on_text_changed(new_text): #funcion que se ejecuta cuando el texto del Lin
 				if is_number(char):
 					numbers+=char
 		Inputer.text = numbers
-		if len(new_text) > 1:
+		if len(new_text) >1:
 			Inputer.text = numbers.reverse()
 
-func _on_text_submitted(text): #funcion conectada a la accion de enviar el LineEdit. utilizada para verificar si no se envia vacio o si el stock es suficiente
+func _on_text_submitted(text): #funcion conectada a la accion de enviar el LineEdit
 	if text == "":
 		return
 	if RefObj:
@@ -71,11 +71,12 @@ func _on_text_submitted(text): #funcion conectada a la accion de enviar el LineE
 		else:
 			LabelLimitStock.show()
 
-func getObject(object):#funcion utilizada en nodos hijo para modificar el valor que posee la referencia(cuanmdo un elemento es puesto en el panel)
+func getObject(object):#funcion utilizada en un nodo hijo para modificar el valor que posee la referencia(cuanmdo un elemento es puesto en el panel)
 	RefObj = object
 
 func AddElementsToArray(CuantityStockUsed):#choclazo que me permite añadir elementos a la lsita que luego será exportada hacia el cliente
 	if len(LIST_OF_ELEMENTS_SELECTEDS)==6 && !isRefInListOfSelecteds():
+		print("hola")
 		return
 	CuantityStockUsed = int(CuantityStockUsed)
 	var cantidadCicle = 0
@@ -112,13 +113,14 @@ func is_number(char):#funcion utilizada en LineEdit para filtrar en timepo real 
 func isRefInListOfSelecteds(): #funcion para verificar que el objeto en panel no este en la lsita seleccionado
 	for Element in LIST_OF_ELEMENTS_SELECTEDS:
 		if RefObj:
+			print(Element["ref"] == RefObj, Element["name"] , RefObj.name)
 			if Element["ref"] == RefObj:
 				return true
 		else:
 			return false
 	return false
 
-func FinishInv():#funcion quwe se encarga de verificar si el inventario añadido por el usuario es igual al inventario requerido por el cliente.
+func FinishInv():
 	if canExitInv.visible:
 		return
 	var cuantityOfequiality = 0
@@ -139,8 +141,8 @@ func FinishInv():#funcion quwe se encarga de verificar si el inventario añadido
 		var texture = TextureRect.new()
 		texture.texture = load("res://assets/massa.jpeg")
 		self.add_child(texture)
-		
 	else:
 		canExitInv.show()
 		await get_tree().create_timer(2).timeout
 		canExitInv.hide()
+		

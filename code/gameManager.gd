@@ -10,8 +10,8 @@ const NIGHTS_MOVEMENT = {
 #--------------------------------------------------------------
 @onready var CAMS = $cameras
 @onready var enemies_node = $enemies
-@onready var minigames_node = $minigames
 #--------------------------------------------------------------
+@onready var minigames_node = $minigames
 var people_scene = preload("res://scenes/peopleScene.tscn")
 var enemy_scene = preload("res://scenes/enemiesScene.tscn")
 #--------------------------------------------------------------
@@ -34,15 +34,10 @@ func instantiate_mini_play() -> void:
 	if not minigames_node:
 		push_error("No se encontró el nodo 'minigames'")
 		return
-	print("Instanc iando minijuego...")
+	print("Instanciando minijuego...")
 #-------------------------------------------------------------
 func _process(delta: float) -> void:
 	Global.show_enms()
 	for enemy in Global.enemies:
 		if can_move_enemies():
-			enemy.move()
-			if enemy.getPos() == Global.ofice:
-				var children = $"."/enemies.get_children()
-				
-				pass
-		
+			pass
