@@ -4,11 +4,39 @@ var actualPosition
 var type
 const TYPES_PEOPLE = ["moto", "cobre", "resorte", "testigo", "client"]
 const ENEMIES_ROUTES = {
-	"moto": ["esquina","reja","screamer"], # <-- screamer = partida perdida
-	"cobre": ["casa", "cables","screamer"],
-	"resorte": ["", "screamer"],
-	"testigo": ["","screamer"] # <-- acá tendrían que ir las camaras en las que pueden aparecer, creo
+	"moto": [
+		"avenida",
+		"esquina",
+		"vereda",
+		"calle_escape",
+		"screamer"
+	],
+
+	"cobre": [
+		"poste",
+		"zanja",
+		"medidor",
+		"cableado",
+		"screamer"
+	],
+
+	"resorte": [
+		"parada",
+		"estacion",
+		"feria",
+		"galeria",
+		"screamer"
+	],
+
+	"testigo": [
+		"reja",
+		"pasillo",
+		"patio",
+		"ventana",
+		"screamer"
+	]
 }
+
 const FRIEND_ROUTE = ["reja"]
 
 func moveEnemy(typ:String = self.type) -> Array:
