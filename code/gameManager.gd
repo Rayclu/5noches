@@ -37,10 +37,15 @@ func instantiate_mini_play() -> void:
 	if not minigames_node:
 		push_error("No se encontró el nodo 'minigames'")
 		return
-	print("Instanciando minijuego...")
+	print("Instanc iando minijuego...")
 #-------------------------------------------------------------
 func _process(delta: float) -> void:
 	Global.show_enms()
 	for enemy in Global.enemies:
 		if can_move_enemies():
-			pass
+			enemy.move()
+			if enemy.getPos() == Global.ofice:
+				var children = $"."/enemies.get_children()
+				
+				pass
+		
