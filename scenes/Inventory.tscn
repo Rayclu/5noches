@@ -1,16 +1,160 @@
 [gd_scene load_steps=16 format=3 uid="uid://btq72mdddp38g"]
 
-[ext_resource type="Script" uid="uid://buodaxepeqdhj" path="res://code/HandlerMainLogic.gd" id="1_7uqmy"]
-[ext_resource type="Script" uid="uid://b0ueeda5tt3fb" path="res://code/inventory.gd" id="1_brmsw"]
-[ext_resource type="Script" uid="uid://bmbi548ybyyr6" path="res://code/itemslot.gd" id="1_elp5n"]
 [ext_resource type="Shader" uid="uid://dmrab3cggpqpw" path="res://Shader/blur_shader.gdshader" id="2_7f7tj"]
-[ext_resource type="Script" uid="uid://be78sqlgjkove" path="res://code/BuyPanel.gd" id="2_7uqmy"]
-[ext_resource type="Script" uid="uid://danab37c1kvp8" path="res://code/ConfigPanels.gd" id="2_njucy"]
 [ext_resource type="Script" uid="uid://dugqya2re53vx" path="res://scenes/MiniInvControl.gd" id="3_q3t5a"]
 [ext_resource type="Texture2D" uid="uid://yh8cr87wwrk2" path="res://assets/massa.jpeg" id="4_cexoc"]
 [ext_resource type="Script" uid="uid://clhiwd7ijwujv" path="res://scenes/DeleteButtonHandler.gd" id="4_f0lgf"]
 [ext_resource type="Script" uid="uid://yr15cpnk63nx" path="res://scenes/UserRequeriments.gd" id="4_yj0ni"]
 [ext_resource type="Texture2D" uid="uid://bhp2ccmrf751b" path="res://assets/padlock.png" id="6_5d712"]
+
+[sub_resource type="GDScript" id="GDScript_5d712"]
+script/source = "extends CanvasLayer
+@onready var LabelLimitStock = get_node(\"LineEdit/LimitStock\")
+@onready var LabelProductDrag = get_node(\"LineEdit/ProductDrag\")
+@onready var Inputer = get_node(\"LineEdit\")
+@onready var texture_rect: TextureRect = get_node(\"TextureRect\")
+@onready var LabelLimitArray = get_node(\"LimitArray\")
+@onready var finished_button = get_node(\"FinishedButton\")
+@export var LIST_OF_ELEMENTS_SELECTEDS = []
+@onready var ClientListRequeriments = get_node(\"ClientRequeriments/MarginContainer/GridContainer\").lista
+@onready var canExitInv = get_node(\"CanExitInv?\")
+@onready var exitSprite = get_node(\"ExitSprite\")
+
+var RefObj
+
+func _ready():
+	Inputer.connect(\"text_submitted\", Callable(self, \"_on_text_submitted\"))
+	Inputer.connect(\"text_changed\", Callable(self, \"_on_text_changed\"))
+	finished_button.connect(\"pressed\",Callable(self, \"FinishInv\"))
+	_load_background()
+	LabelLimitStock.hide()
+	LabelLimitArray.hide()
+	canExitInv.hide()
+	finished_button.hide()
+
+func _process(delta): #utilizo process para poder cambiar en timepo real la visualizacion de los labels para cada caso
+	if len(LIST_OF_ELEMENTS_SELECTEDS)==6 && !isRefInListOfSelecteds():
+			LabelLimitStock.hide()
+			LabelLimitArray.show()
+			LabelProductDrag.hide()
+			return
+	if RefObj:
+		LabelLimitArray.hide()
+		LabelProductDrag.hide()
+		LabelLimitStock.show()
+	else:
+		LabelLimitStock.hide()
+		LabelProductDrag.show()
+		LabelLimitArray.hide()
+	if len(LIST_OF_ELEMENTS_SELECTEDS)!=0:
+		finished_button.show()
+	else:
+		finished_button.hide()
+
+func _load_background(): #funcionq ue carga el fondo cuando se abre el inv
+	if SHORCUTS.image:
+		var tex = ImageTexture.create_from_image(SHORCUTS.image)
+		texture_rect.texture = tex
+
+func _on_text_changed(new_text): #funcion que se ejecuta cuando el texto del LineEdit se cambia. utilizada para verificar que los caracteres sean solo numeros
+	if len(new_text) == 1 && int(new_text) == 0:
+			Inputer.text = \"\"
+			return
+	if !RefObj:
+		Inputer.text = \"\"
+	else:
+		var numbers = \"\"
+		for char in new_text:
+			if !is_string(char):
+				if is_number(char):
+					numbers+=char
+		Inputer.text = numbers
+		if len(new_text) > 1:
+			Inputer.text = numbers.reverse()
+
+func _on_text_submitted(text): #funcion conectada a la accion de enviar el LineEdit. utilizada para verificar si no se envia vacio o si el stock es suficiente
+	if text == \"\":
+		return
+	if RefObj:
+		if RefObj.stock - int(text) >= 0:
+			AddElementsToArray(text)
+		else:
+			LabelLimitStock.show()
+
+func getObject(object):#funcion utilizada en nodos hijo para modificar el valor que posee la referencia(cuanmdo un elemento es puesto en el panel)
+	RefObj = object
+
+func AddElementsToArray(CuantityStockUsed):#choclazo que me permite añadir elementos a la lsita que luego será exportada hacia el cliente
+	if len(LIST_OF_ELEMENTS_SELECTEDS)==6 && !isRefInListOfSelecteds():
+		return
+	CuantityStockUsed = int(CuantityStockUsed)
+	var cantidadCicle = 0
+	if len(LIST_OF_ELEMENTS_SELECTEDS) == 0:
+		LIST_OF_ELEMENTS_SELECTEDS.push_back({\"name\":RefObj.name,\"ref\":RefObj,\"CuSelect\":CuantityStockUsed,\"totalPrice\":int(CuantityStockUsed)*RefObj.value,\"img\":RefObj.image})
+	else:
+		for element in LIST_OF_ELEMENTS_SELECTEDS:
+			cantidadCicle+=1
+			if element[\"ref\"] == RefObj:
+				cantidadCicle-=1
+				element[\"CuSelect\"] += CuantityStockUsed
+				element[\"totalPrice\"] = int(element[\"CuSelect\"]) * RefObj.value
+		if len(LIST_OF_ELEMENTS_SELECTEDS) == cantidadCicle:
+			LIST_OF_ELEMENTS_SELECTEDS.push_back({\"name\":RefObj.name,\"ref\":RefObj,\"CuSelect\":CuantityStockUsed,\"totalPrice\":int(CuantityStockUsed)*RefObj.value,\"img\":RefObj.image})
+	RefObj.stock -= int(CuantityStockUsed)
+	#for element in LIST_OF_ELEMENTS_SELECTEDS:
+	#	print(element[\"name\"],\" \",element[\"CuSelect\"])
+	#print(LIST_OF_ELEMENTS_SELECTEDS)
+
+func is_string(char): #funcion utilizada en LineEdit para filtrar en timepo real las letras
+	var abc = \"abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ\"
+	for letter in abc:
+		if letter == char:
+			return true
+	return false
+
+func is_number(char):#funcion utilizada en LineEdit para filtrar en timepo real los numeros
+	var numbers = [\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"0\"]
+	for number in numbers:
+		if number == char:
+			return true
+	return false
+
+func isRefInListOfSelecteds(): #funcion para verificar que el objeto en panel no este en la lsita seleccionado
+	for Element in LIST_OF_ELEMENTS_SELECTEDS:
+		if RefObj:
+			if Element[\"ref\"] == RefObj:
+				return true
+		else:
+			return false
+	return false
+
+func FinishInv():#funcion quwe se encarga de verificar si el inventario añadido por el usuario es igual al inventario requerido por el cliente.
+	if canExitInv.visible:
+		return
+	var cuantityOfequiality = 0
+	#len(ClientListRequeriments)*3
+	for product in ClientListRequeriments:
+		for chodesproduct in LIST_OF_ELEMENTS_SELECTEDS:
+			if product[\"name\"] == chodesproduct[\"name\"]:
+				print(\"hola1\")
+				cuantityOfequiality+=1
+				if product[\"ref\"].image == chodesproduct[\"ref\"].image:
+					print(\"hola2\")
+					cuantityOfequiality+=1
+					if product[\"CuSelect\"] == chodesproduct[\"CuSelect\"]:
+						print(\"hola3\")
+						cuantityOfequiality+=1
+	if cuantityOfequiality == len(ClientListRequeriments)*3:
+		print(\"a tu puta casa\")
+		var texture = TextureRect.new()
+		texture.texture = load(\"res://assets/massa.jpeg\")
+		self.add_child(texture)
+		
+	else:
+		canExitInv.show()
+		await get_tree().create_timer(2).timeout
+		canExitInv.hide()
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7f7tj"]
 shader = ExtResource("2_7f7tj")
@@ -35,6 +179,164 @@ corner_radius_bottom_left = 25
 bg_color = Color(0, 0, 0, 1)
 corner_detail = 1
 
+[sub_resource type="GDScript" id="GDScript_7f7tj"]
+script/source = "extends Panel
+
+var data_bk
+
+func _process(delta: float) -> void: #i guess que cambia el estilo del cursor 
+	if Input.get_current_cursor_shape() == CURSOR_FORBIDDEN:
+		DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
+
+func _notification(what: int): #funcion que se encargar de handlear el mal drop de los elementos
+	if what == Node.NOTIFICATION_DRAG_BEGIN:
+		data_bk = get_viewport().gui_get_drag_data()
+	if what == Node.NOTIFICATION_DRAG_END:
+		if not is_drag_successful():
+			if data_bk:
+				for data in data_bk:
+					data.show()
+					data_bk=null
+"
+
+[sub_resource type="GDScript" id="GDScript_q3t5a"]
+script/source = "extends Panel
+
+@onready var texture_rect: TextureRect = $TextureRect
+@onready var label: Label = $Label
+@onready var Canvaslayer = get_node(\"../..\")
+#var yoQueMierdaSe 
+
+#func _process(delta: float) -> void:
+#	yoQueMierdaSe = LEVELS.ClientRqueriment
+
+func _get_drag_data(at_position: Vector2) -> Variant:
+	if texture_rect.texture == null || label == null:
+		return
+	var preview = duplicate()
+	var trasfer = Control.new()
+	trasfer.add_child(preview)
+	preview.position -= Vector2(300,300)
+	preview.rotation_degrees = -15
+	preview.self_modulate = Color.TRANSPARENT
+	trasfer.modulate = Color(trasfer.modulate,0.5)
+	texture_rect.hide()
+	label.hide()
+	set_drag_preview(trasfer)
+	return [texture_rect,label]
+
+func _notification(what: int): #funcion que utilizo para poder globalziar la referencia del objeto seleccionado asi me permite obtenerlo.
+	if what == Node.NOTIFICATION_DRAG_END:
+		if is_drag_successful():
+			if texture_rect.texture:
+				for objects in LEVELS.items_per_level[LEVELS.level]:
+					if texture_rect.texture.load_path == load(objects.image).load_path:
+						Canvaslayer.getObject(objects)
+			else:
+				Canvaslayer.getObject(null)
+
+func _can_drop_data(_at_position: Vector2, _data: Variant):#funcionq eu utilizo para verificar si las imagenes de lo que pide el usuario es igual al el objeto seleccionado, en caso de que no no le permite volcar el objeto al panel.
+#	var equalityChecker = 0
+#	for element in yoQueMierdaSe:
+#		if _data[0].texture.load_path != load(element[\"ref\"].image).load_path:
+#			equalityChecker+=1
+#	if equalityChecker == len(yoQueMierdaSe):
+#		return false
+#	else:
+		return true
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	var temp = texture_rect.texture
+	var labl = label.text
+	texture_rect.show()
+	label.show()
+	label.text = data[1].text
+	data[1].text = labl
+	texture_rect.texture = data[0].texture
+	data[0].texture = temp
+	data[0].show()
+	data[1].show()
+"
+
+[sub_resource type="GDScript" id="GDScript_yj0ni"]
+script/source = "extends GridContainer
+
+
+func _ready() -> void:
+	AddGridWitClass()
+
+func _process(delta: float) -> void:
+	UpdateValues()
+
+func AddGridWitClass():
+	var i = 0
+	for Classitem in LEVELS.items_per_level[LEVELS.level]:
+		var itemSlot = get_child(i).get_children()
+		itemSlot[0].texture = load(Classitem.image)
+		itemSlot[1].text = str(Classitem.stock)
+		itemSlot[2].hide()
+		var normal = StyleBoxFlat.new()
+		normal.bg_color = Color(0.3,0.3,0.3)
+		normal.set_corner_radius_all(15)
+		get_child(i).add_theme_stylebox_override(\"panel\",normal)
+		i+=1
+
+	for child in get_children():
+		if child.get_child(0).texture==null:
+			var normal = StyleBoxFlat.new()
+			normal.bg_color = Color(0.05,0.05,0.05) # gris oscuro
+			child.add_theme_stylebox_override(\"panel\",normal)
+
+func UpdateValues():
+	var ObjectSelected = get_node(\"../../..\").RefObj
+	var panelInv = get_parent().get_parent().get_children()[0]
+	if panelInv.texture_rect.texture != null :
+		if panelInv.texture_rect.visible != false:
+			if ObjectSelected:
+				panelInv.label.text = str(ObjectSelected.stock) #canvaslayer
+"
+
+[sub_resource type="GDScript" id="GDScript_cexoc"]
+script/source = "extends Panel
+
+@onready var texture_rect: TextureRect = $TextureRect
+@onready var candado: TextureRect = $Candado
+@onready var label: Label = $Label
+
+func _get_drag_data(at_position: Vector2) -> Variant:
+	if texture_rect.texture == null || label == null:
+		return
+	var preview = duplicate()
+	var trasfer = Control.new()
+	trasfer.add_child(preview)
+	preview.position -= Vector2(25,25)
+	preview.rotation_degrees = -15
+	preview.self_modulate = Color.TRANSPARENT
+	trasfer.modulate = Color(trasfer.modulate,0.5)
+	texture_rect.hide()
+	label.hide()
+	set_drag_preview(trasfer)
+	return [texture_rect,label]
+
+func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
+	if texture_rect.texture || candado.visible!=true:
+		return true
+	else:
+		return false
+
+func _drop_data(_at_position: Vector2, data: Variant) -> void:
+	var temp = texture_rect.texture
+	var labl = label.text
+	texture_rect.show()
+	label.show()
+	label.text = data[1].text
+	data[1].text = labl
+	texture_rect.texture = data[0].texture
+	data[0].texture = temp
+	data[0].show()
+	data[1].show()
+"
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -44,7 +346,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource("1_7uqmy")
+script = SubResource("GDScript_5d712")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_7f7tj")
@@ -698,7 +1000,7 @@ offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5d712")
-script = ExtResource("1_brmsw")
+script = SubResource("GDScript_7f7tj")
 
 [node name="SelecterItem" type="Panel" parent="CanvasLayer/Inventory"]
 custom_minimum_size = Vector2(60, 60)
@@ -709,7 +1011,7 @@ offset_right = 368.0
 offset_bottom = 394.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_7uqmy")
+script = SubResource("GDScript_q3t5a")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/SelecterItem"]
 layout_mode = 1
@@ -750,12 +1052,12 @@ layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 9
-script = ExtResource("2_njucy")
+script = SubResource("GDScript_yj0ni")
 
 [node name="Itemslot" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot"]
 layout_mode = 1
@@ -799,7 +1101,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot2" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot2"]
 layout_mode = 1
@@ -843,7 +1145,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot3" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot3"]
 layout_mode = 1
@@ -887,7 +1189,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot4" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot4"]
 layout_mode = 1
@@ -931,7 +1233,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot5" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot5"]
 layout_mode = 1
@@ -975,7 +1277,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot6" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot6"]
 layout_mode = 1
@@ -1019,7 +1321,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot7" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot7"]
 layout_mode = 1
@@ -1063,7 +1365,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot8" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot8"]
 layout_mode = 1
@@ -1107,7 +1409,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot9" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot9"]
 layout_mode = 1
@@ -1151,7 +1453,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot10" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot10"]
 layout_mode = 1
@@ -1195,7 +1497,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot11" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot11"]
 layout_mode = 1
@@ -1239,7 +1541,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot12" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot12"]
 layout_mode = 1
@@ -1283,7 +1585,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot13" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot13"]
 layout_mode = 1
@@ -1327,7 +1629,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot14" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot14"]
 layout_mode = 1
@@ -1371,7 +1673,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot15" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot15"]
 layout_mode = 1
@@ -1415,7 +1717,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot16" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot16"]
 layout_mode = 1
@@ -1459,7 +1761,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot17" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot17"]
 layout_mode = 1
@@ -1503,7 +1805,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot18" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = SubResource("GDScript_cexoc")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot18"]
 layout_mode = 1

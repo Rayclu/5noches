@@ -7,7 +7,7 @@ var pressed = true
 const Images = {
 	"Cam1" : preload("res://assets/Captura de pantalla 2025-09-10 151249.png"),
 	"Cam2" : preload("res://assets/Captura de pantalla 2025-09-18 101614.png"),
-	"Cam3" : preload("res://assets/Untitled.jpeg")
+	"Cam3" : preload("res://assets/Untitled.png")
 }
 
 func _ready() -> void:
