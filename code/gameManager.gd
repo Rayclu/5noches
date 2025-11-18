@@ -16,14 +16,25 @@ const NIGHTS_MOVEMENT = {
 #--------------------------------------------------------------
 var people_scene = preload("res://scenes/peopleScene.tscn")
 var enemy_scene = preload("res://scenes/enemiesScene.tscn")
+var HUD = preload("res://scenes/HUD.tscn")
 #--------------------------------------------------------------
 var current_night: int = 1
 var energy: int = 100
 var money: int = 0
+var timer: Timer
+#--------------------------------------------------------------
+
 #--------------------------------------------------------------
 func _ready() -> void:
 	Global.set_types()
-	$player.add_child()
+	Global.show_enms()
+	$player.add_child(HUD.instantiate())
+	$time.add_child(Timer.new())
+	timer = $time.get_child(0)
+	timer.one_shot = false
+	timer.start(5.5)
+	timer.connect("timeout", Callable(self, "move"))
+	
 #--------------------------------------------------------------
 func kill_children(node) -> void:
 	for child in node.get_children():
@@ -38,9 +49,18 @@ func instantiate_mini_play() -> void:
 		push_error("No se encontró el nodo 'minigames'")
 		return
 	print("Instanciando minijuego...")
+#--------------------------------------------------------------
+func move():
+	print("Se intentó mover a los enemigos...")
+	for enemy in Global.enemies:
+		if enemy.getActualPos() == "screamer":
+			print("Perdiste.")
+			get_tree().current_scene.queue_free()
+		var movemente_res  = can_move_enemies()
+		print("Se puede mover el enemigo? ", movemente_res)
+		if movemente_res:
+			enemy.MoveToNextUbitacion()
 #-------------------------------------------------------------
 func _process(delta: float) -> void:
 	Global.show_enms()
-	for enemy in Global.enemies:
-		if can_move_enemies():
-			pass
+	

@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://btq72mdddp38g"]
+[gd_scene load_steps=4 format=3 uid="uid://sd1sr14sc0qe"]
 
-[ext_resource type="Script" uid="uid://b0ueeda5tt3fb" path="res://code/inventory.gd" id="1_brmsw"]
-[ext_resource type="Script" uid="uid://bmbi548ybyyr6" path="res://code/itemslot.gd" id="1_elp5n"]
-[ext_resource type="Script" uid="uid://danab37c1kvp8" path="res://code/ITEMS_INV_CLASS.gd" id="2_njucy"]
+[ext_resource type="Script" path="res://code/inventory.gd" id="1_brmsw"]
+[ext_resource type="Script" path="res://code/itemslot.gd" id="1_elp5n"]
+[ext_resource type="Script" path="res://code/ITEMS_INV_CLASS.gd" id="2_njucy"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
