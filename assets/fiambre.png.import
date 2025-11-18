@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dccx86y88pmjb"
-path="res://.godot/imported/asset_alfajor.larre.png-0c2ab9a1cbdf859c2570cc2eef979b6a.ctex"
+uid="uid://ds883m20j36pr"
+path="res://.godot/imported/fiambre.png-be7ea373090fb4dbd6a17482b6a932df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/asset_alfajor.larre.png"
-dest_files=["res://.godot/imported/asset_alfajor.larre.png-0c2ab9a1cbdf859c2570cc2eef979b6a.ctex"]
+source_file="res://assets/fiambre.png"
+dest_files=["res://.godot/imported/fiambre.png-be7ea373090fb4dbd6a17482b6a932df.ctex"]
 
 [params]
 

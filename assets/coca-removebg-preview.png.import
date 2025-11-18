@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1x8008bf84ny"
-path="res://.godot/imported/asset_ferne.png-f18078b147d03ec747c3256a4d701d09.ctex"
+uid="uid://d1dx5fp2riacy"
+path="res://.godot/imported/coca-removebg-preview.png-6f4533c42a6194c2b99c9fbdc527070a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/asset_ferne.png"
-dest_files=["res://.godot/imported/asset_ferne.png-f18078b147d03ec747c3256a4d701d09.ctex"]
+source_file="res://assets/coca-removebg-preview.png"
+dest_files=["res://.godot/imported/coca-removebg-preview.png-6f4533c42a6194c2b99c9fbdc527070a.ctex"]
 
 [params]
 
