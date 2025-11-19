@@ -22,9 +22,9 @@ buses/default_bus_layout=""
 Global="*res://code/GLOBALS/Global.gd"
 LEVELS="*res://code/GLOBALS/Levels.gd"
 ECONOMY="*res://code/GLOBALS/Economy.gd"
-SHORCUTS="*res://code/GLOBALS/shor_cuts.gd"
-Client="*res://code/GLOBALS/Client.gd"
 HUD="*res://scenes/HUD.tscn"
+SHORCUTS="*res://code/GLOBALS/shor_cuts.gd"
+CLIENT="*res://code/GLOBALS/Client.gd"
 
 [file_customization]
 
@@ -55,3 +55,5 @@ e={
 
 textures/canvas_textures/default_texture_filter=3
 textures/canvas_textures/default_texture_repeat=1
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

@@ -22,7 +22,6 @@ func UpdatePanels(): #funcion que se encarga de actualizar los elementos dentro 
 	var i = 0
 	for child in get_children():
 		if i >= len(listaElementsChosed):
-			print("hola me comp´li???"," -- ",child)
 			child.get_children()[0].texture = null
 			child.get_children()[1].text = ""
 			var normal = StyleBoxFlat.new()
@@ -30,5 +29,5 @@ func UpdatePanels(): #funcion que se encarga de actualizar los elementos dentro 
 			normal.set_corner_radius_all(25)
 			child.add_theme_stylebox_override("panel",normal)
 		else:
-			print("no,. incrementate")
+
 			i+=1
