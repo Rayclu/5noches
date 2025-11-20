@@ -9,7 +9,7 @@ func _process(delta: float) -> void:
 
 func AddGridWitClass():
 	var i = 0
-	for Classitem in LEVELS.items_per_level[LEVELS.level]:
+	for Classitem in LEVELS.InventoryPerLevel[LEVELS.level]:
 		var itemSlot = get_child(i).get_children()
 		itemSlot[0].texture = load(Classitem.image)
 		itemSlot[1].text = str(Classitem.stock)

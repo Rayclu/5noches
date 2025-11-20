@@ -27,7 +27,7 @@ func _notification(what: int): #funcion que utilizo para poder globalziar la ref
 	if what == Node.NOTIFICATION_DRAG_END:
 		if is_drag_successful():
 			if texture_rect.texture:
-				for objects in LEVELS.items_per_level[LEVELS.level]:
+				for objects in LEVELS.InventoryPerLevel[LEVELS.level]:
 					if texture_rect.texture.load_path == load(objects.image).load_path:
 						Canvaslayer.getObject(objects)
 			else:

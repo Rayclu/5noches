@@ -78,7 +78,7 @@ func chooseRandomBtton():
 	BttnsRandom.add_theme_stylebox_override("hover", sombra)
 	
 	ChosedButton = BttnsRandom
-	CreateTimer(0.75,true,deletePreset.bind(BttnsRandom))	
+	CreateTimer(0.75,true,deletePreset.bind(BttnsRandom))
 
 func bttnPressed(ButtonPresed:Button):
 	var label =get_node("Label2")

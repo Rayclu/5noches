@@ -3,10 +3,24 @@ extends Node
 var requeriments:Array
 var client:Object
 
-func ChoseElements():
-	var ActualLevel = LEVELS.level
+func ChoseElementsToBuy():
 	randomize()
-	var number = randi_range(int(ActualLevel / 2),int(ActualLevel*1.5))
-	
+	var ActualLevel = LEVELS.level
+	var Elements
+	var xd = []
+	if ActualLevel == 1:
+		Elements = randi_range(1,int((ActualLevel*1.5)+0.5))
+	else:
+		Elements = randi_range(int((ActualLevel/2)+0.5),int((ActualLevel*1.5)+0.5))
+		
+	for i in range(0,Elements):
+		var Name = LEVELS.availableFoodPerLevel[ActualLevel][randi_range(0,len(LEVELS.availableFoodPerLevel[ActualLevel])-1)]
+		var CuantityOfElements = randi_range(int(ActualLevel),int(ActualLevel*2))
+		var image = LEVELS.assets[Name]
+		var Cost = LEVELS.priceOfThings[Name]
+		var ref = LEVELS.CrteFd(Name,Cost,image,CuantityOfElements)
+		requeriments.append(ref)
+	print(requeriments)
+		
 func defineStoleProv():
 	pass

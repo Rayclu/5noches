@@ -23,7 +23,7 @@ var money: int = 0
 #--------------------------------------------------------------
 func _ready() -> void:
 	Global.set_types()
-	$player.add_child()
+	#$player.add_child()
 #--------------------------------------------------------------
 func kill_children(node) -> void:
 	for child in node.get_children():

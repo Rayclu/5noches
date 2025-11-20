@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://0yihccwmhxg"]
+[gd_scene load_steps=37 format=3 uid="uid://otrp368uf8nw"]
 
 [ext_resource type="Script" uid="uid://m3gd4ybxs012" path="res://control.gd" id="1_5p55f"]
 [ext_resource type="Texture2D" uid="uid://cpfg18k053oc2" path="res://assets/animation/2fps char.png" id="2_01bab"]
@@ -32,41 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://da5oo4rpfy743" path="res://assets/animation/9fps stole char.png" id="30_qsysb"]
 [ext_resource type="Texture2D" uid="uid://cao8vsqv3ykpa" path="res://assets/animation/10fps stole char.png" id="31_hl4in"]
 [ext_resource type="Texture2D" uid="uid://dua7t7333w14e" path="res://assets/animation/11fps stole char.png" id="32_136wn"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tfhda"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_01bab")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_exs80")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_kql7n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_tac8f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_vb5ih")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_6pn8l")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_0jf8d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_apcft")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_2pn8f")
-}],
-"loop": true,
-"name": &"default",
-"speed": 8.0
-}]
+[ext_resource type="Script" uid="uid://yr15cpnk63nx" path="res://code/Inventario/UserRequeriments.gd" id="33_mnht8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fd2iw"]
 animations = [{
@@ -110,6 +76,38 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_01bab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_exs80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kql7n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tac8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vb5ih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6pn8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_0jf8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_apcft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2pn8f")
+}],
+"loop": true,
+"name": &"Enter",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("22_fd2iw")
 }, {
 "duration": 1.0,
@@ -147,6 +145,20 @@ animations = [{
 "speed": 30.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxeuk"]
+bg_color = Color(0.0646965, 0.0646965, 0.0646965, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nnsnw"]
+bg_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -165,17 +177,10 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 5
 
-[node name="Enter" type="AnimatedSprite2D" parent="."]
-position = Vector2(577, 328)
-sprite_frames = SubResource("SpriteFrames_tfhda")
-frame = 8
-frame_progress = 1.0
-
 [node name="Left" type="AnimatedSprite2D" parent="."]
 position = Vector2(577, 328)
 sprite_frames = SubResource("SpriteFrames_fd2iw")
-animation = &"Stole"
-frame_progress = 0.3581
+animation = &"Enter"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
@@ -184,7 +189,228 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -377.0
-offset_top = -203.0
+offset_left = -158.848
+offset_top = -58.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="ClientRequeriments" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.732
+anchor_top = 0.39
+anchor_right = 0.732
+anchor_bottom = 0.39
+offset_left = -0.264038
+offset_top = -2.72002
+offset_right = 211.736
+offset_bottom = 142.28
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sxeuk")
+
+[node name="MarginContainer" type="MarginContainer" parent="ClientRequeriments"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -145.0
+offset_right = 210.0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="ClientRequeriments/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 3
+script = ExtResource("33_mnht8")
+
+[node name="Itemslot" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
+
+[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0833333
+anchor_right = 0.916667
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 5
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+vertical_alignment = 3
+
+[node name="Itemslot2" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
+
+[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0833333
+anchor_right = 0.916667
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 5
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot2"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+vertical_alignment = 3
+
+[node name="Itemslot3" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
+
+[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0833333
+anchor_right = 0.916667
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 5
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot3"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+vertical_alignment = 3
+
+[node name="Itemslot4" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
+
+[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0833333
+anchor_right = 0.916667
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 5
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot4"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+vertical_alignment = 3
+
+[node name="Itemslot5" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
+
+[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0833333
+anchor_right = 0.916667
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 5
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot5"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+vertical_alignment = 3
+
+[node name="Itemslot6" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
+
+[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0833333
+anchor_right = 0.916667
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 5
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot6"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+horizontal_alignment = 2
+vertical_alignment = 3
