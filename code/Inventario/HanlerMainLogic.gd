@@ -120,6 +120,7 @@ func isRefInListOfSelecteds(): #funcion para verificar que el objeto en panel no
 		else:
 			return false
 	return false
+##asdkñljasdklñjasdklasjdklasjdklsaj
 
 func FinishInv():#funcion quwe se encarga de verificar si el inventario añadido por el usuario es igual al inventario requerido por el cliente.
 	if canExitInv.visible:

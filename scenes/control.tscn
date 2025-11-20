@@ -144,7 +144,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Stole",
-"speed": 15.0
+"speed": 30.0
 }]
 
 [node name="Control" type="Control"]
@@ -175,8 +175,7 @@ frame_progress = 1.0
 position = Vector2(577, 328)
 sprite_frames = SubResource("SpriteFrames_fd2iw")
 animation = &"Stole"
-frame = 1
-frame_progress = 0.735922
+frame_progress = 0.3581
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

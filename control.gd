@@ -1,6 +1,5 @@
 extends Control
-var holas = Cleptomano.new()
-var holas2 = Cliente.new()
+
 @onready var texture_rect = get_node("TextureRect")
 @onready var EnterAnimation = get_node("Enter")
 @onready var LeftAnimation:AnimatedSprite2D = get_node("Left")
@@ -8,6 +7,7 @@ var holas2 = Cliente.new()
 var tween = create_tween()
 
 func _ready() -> void:
+	CLIENT.ChoseElements()
 	button.connect("pressed",Callable(self,"StartAnimation"))
 	EnterAnimation.play()
 	LeftAnimation.hide()
@@ -20,11 +20,14 @@ func StartAnimation():
 		EnterAnimation.hide()
 		LeftAnimation.scale = Vector2(9,9)
 		LeftAnimation.show()
-		LeftAnimation.play("Stole")
+		LeftAnimation.play("Back")
 		var AnimationLeft = create_tween()
 		AnimationLeft.tween_property(LeftAnimation, "scale", Vector2(1,1), 10)
 		await get_tree().create_timer(0.5).timeout
 		LeftAnimation.sprite_frames.remove_frame("Back", 0)
+
+func StoleAnimation():
+	pass
 
 func _process(delta: float) -> void:
 	if int(EnterAnimation.scale[0]) == 9:
@@ -36,5 +39,3 @@ func _process(delta: float) -> void:
 		LeftAnimation.hide()
 		
 	HUD.get_children()[0].hide()
-	texture_rect.texture = holas2.asset
-	var hi = Cleptomano.CreateInstances("pepe",[],preload("res://assets/Cliente.png"),3,10,true)
