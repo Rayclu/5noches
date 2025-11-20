@@ -1,6 +1,7 @@
 extends Node
 #--------------------------------------------------------------
 signal GameReady
+signal ScreamerAlert
 #--------------------------------------------------------------
 const NIGHTS_MOVEMENT = {
 	1: 30,
@@ -32,9 +33,8 @@ func _ready() -> void:
 	$time.add_child(Timer.new())
 	timer = $time.get_child(0)
 	timer.one_shot = false
-	timer.start(5.5)
+	timer.start(2)
 	timer.connect("timeout", Callable(self, "move"))
-	
 #--------------------------------------------------------------
 func kill_children(node) -> void:
 	for child in node.get_children():
@@ -43,6 +43,7 @@ func kill_children(node) -> void:
 func can_move_enemies() -> bool:
 	var movement_chance = NIGHTS_MOVEMENT.get(current_night, 30)
 	return randi_range(0, 100) <= movement_chance
+
 #--------------------------------------------------------------
 func instantiate_mini_play() -> void:
 	if not minigames_node:
@@ -54,13 +55,19 @@ func move():
 	print("Se intentó mover a los enemigos...")
 	for enemy in Global.enemies:
 		if enemy.getActualPos() == "screamer":
+			self.ScreamerAlert.emit()
 			print("Perdiste.")
 			get_tree().current_scene.queue_free()
 		var movemente_res  = can_move_enemies()
 		print("Se puede mover el enemigo? ", movemente_res)
 		if movemente_res:
 			enemy.MoveToNextUbitacion()
+			if enemy.actualPosition == "screamer":
+				print("Enemigo preparando el screamer") 
+			
 #-------------------------------------------------------------
+func LightsOut():
+	$".".get_child(10).get_child(0).outLights()
 func _process(delta: float) -> void:
 	Global.show_enms()
 	

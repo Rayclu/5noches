@@ -10,7 +10,6 @@ var enemies = [resorte, moto, testigo, cable]
 
 func set_types() -> void:
 	var index = 0 
-	# Obtener la escena actual y comprobar si tiene el nodo "enemies"
 	var current_scene = get_tree().current_scene
 	var enemies_node = null
 	if current_scene and current_scene.has_node("enemies"):
@@ -18,9 +17,7 @@ func set_types() -> void:
 	for enemy in enemies:
 		enemy.type = enemy_scene.instantiate().TYPES_PEOPLE[index]
 		if enemies_node:
-			print(enemies_node)
 			show_enms()
-			
 		else:
 			print("set_types: nodo 'enemies' no existe en la escena actual")
 		index+=1

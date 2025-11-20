@@ -81,6 +81,7 @@ func chooseRandomBtton():
 	CreateTimer(0.75,true,deletePreset.bind(BttnsRandom))	
 
 func bttnPressed(ButtonPresed:Button):
+	print("jaslkajslkdjaslkdjalksdjlaksjdlasjdlkasjd")
 	var label =get_node("Label2")
 	if ButtonPresed == ChosedButton:
 		deletePreset(ButtonPresed)

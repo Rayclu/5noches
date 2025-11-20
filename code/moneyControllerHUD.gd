@@ -1,6 +1,6 @@
 extends Control
 @onready var TextMoney = get_node("MoneyLabel")
-@onready var SignalCam = get_parent().get_parent().get_node("Cameras HUD/BttnsContainer/MainButton")
+@onready var SignalCam = get_node("../../CamerasHUD/BttnsContainer/MainButton")
 
 var signalPush = 0
 
