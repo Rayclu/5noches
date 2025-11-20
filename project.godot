@@ -19,11 +19,12 @@ buses/default_bus_layout=""
 
 [autoload]
 
-Global="*res://code/Global.gd"
-LEVELS="*res://code/Levels.gd"
-ECONOMY="*res://code/Economy.gd"
-SHORCUTS="*res://code/shor_cuts.gd"
+Global="*res://code/GLOBALS/Global.gd"
+LEVELS="*res://code/GLOBALS/Levels.gd"
+ECONOMY="*res://code/GLOBALS/Economy.gd"
 HUD="*res://scenes/HUD.tscn"
+SHORCUTS="*res://code/GLOBALS/shor_cuts.gd"
+CLIENT="*res://code/GLOBALS/Client.gd"
 
 [file_customization]
 
@@ -33,6 +34,7 @@ folder_colors={
 "res://assets/": "pink",
 "res://cameras/": "yellow",
 "res://code/": "red",
+"res://code/GLOBALS/": "blue",
 "res://scenes/": "teal"
 }
 
@@ -51,4 +53,7 @@ e={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=3
+textures/canvas_textures/default_texture_repeat=1
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

@@ -21,6 +21,9 @@ func _ready():
 	LabelLimitArray.hide()
 	canExitInv.hide()
 	finished_button.hide()
+	for child in HUD.get_children():
+		child.hide()
+
 
 func _process(delta): #utilizo process para poder cambiar en timepo real la visualizacion de los labels para cada caso
 	if len(LIST_OF_ELEMENTS_SELECTEDS)==6 && !isRefInListOfSelecteds():
@@ -117,6 +120,7 @@ func isRefInListOfSelecteds(): #funcion para verificar que el objeto en panel no
 		else:
 			return false
 	return false
+##asdkñljasdklñjasdklasjdklasjdklsaj
 
 func FinishInv():#funcion quwe se encarga de verificar si el inventario añadido por el usuario es igual al inventario requerido por el cliente.
 	if canExitInv.visible:
@@ -139,7 +143,8 @@ func FinishInv():#funcion quwe se encarga de verificar si el inventario añadido
 		var texture = TextureRect.new()
 		texture.texture = load("res://assets/massa.jpeg")
 		self.add_child(texture)
-		
+		for child in HUD.get_children():
+			child.show()
 	else:
 		canExitInv.show()
 		await get_tree().create_timer(2).timeout

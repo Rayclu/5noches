@@ -10,6 +10,3 @@ func updateValues(nombre,money,asset,amount):
 	image = asset
 	stock = amount
 	return self
-
-func printe():
-	pass

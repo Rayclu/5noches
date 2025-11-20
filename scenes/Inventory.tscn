@@ -5,17 +5,17 @@
 [ext_resource type="Script" path="res://code/ITEMS_INV_CLASS.gd" id="2_njucy"]
 [gd_scene load_steps=16 format=3 uid="uid://btq72mdddp38g"]
 
-[ext_resource type="Script" uid="uid://buodaxepeqdhj" path="res://code/HandlerMainLogic.gd" id="1_7uqmy"]
-[ext_resource type="Script" uid="uid://b0ueeda5tt3fb" path="res://code/inventory.gd" id="1_brmsw"]
-[ext_resource type="Script" uid="uid://bmbi548ybyyr6" path="res://code/itemslot.gd" id="1_elp5n"]
+[ext_resource type="Script" uid="uid://c6ql4pq74rj4" path="res://code/Inventario/HanlerMainLogic.gd" id="1_7f7tj"]
 [ext_resource type="Shader" uid="uid://dmrab3cggpqpw" path="res://Shader/blur_shader.gdshader" id="2_7f7tj"]
-[ext_resource type="Script" uid="uid://be78sqlgjkove" path="res://code/BuyPanel.gd" id="2_7uqmy"]
-[ext_resource type="Script" uid="uid://danab37c1kvp8" path="res://code/ConfigPanels.gd" id="2_njucy"]
-[ext_resource type="Script" uid="uid://dugqya2re53vx" path="res://scenes/MiniInvControl.gd" id="3_q3t5a"]
+[ext_resource type="Script" uid="uid://clhiwd7ijwujv" path="res://code/Inventario/DeleteButtonHandler.gd" id="3_5d712"]
+[ext_resource type="Script" uid="uid://dugqya2re53vx" path="res://code/Inventario/MiniInvControl.gd" id="3_q3t5a"]
 [ext_resource type="Texture2D" uid="uid://yh8cr87wwrk2" path="res://assets/massa.jpeg" id="4_cexoc"]
-[ext_resource type="Script" uid="uid://clhiwd7ijwujv" path="res://scenes/DeleteButtonHandler.gd" id="4_f0lgf"]
-[ext_resource type="Script" uid="uid://yr15cpnk63nx" path="res://scenes/UserRequeriments.gd" id="4_yj0ni"]
+[ext_resource type="Script" uid="uid://yr15cpnk63nx" path="res://code/Inventario/UserRequeriments.gd" id="4_yj0ni"]
 [ext_resource type="Texture2D" uid="uid://bhp2ccmrf751b" path="res://assets/padlock.png" id="6_5d712"]
+[ext_resource type="Script" uid="uid://7631g6nfmug5" path="res://code/Inventario/InventoryGeneralLogic.gd" id="7_q3t5a"]
+[ext_resource type="Script" uid="uid://cmkgr2ny6lfek" path="res://code/Inventario/SelectedItemLogic.gd" id="8_yj0ni"]
+[ext_resource type="Script" uid="uid://1cwve313ydte" path="res://code/Inventario/InvContainerLogic.gd" id="9_cexoc"]
+[ext_resource type="Script" uid="uid://cqi8r8p7m737o" path="res://code/Inventario/ItemSlotLogic.gd" id="10_f0lgf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7f7tj"]
 shader = ExtResource("2_7f7tj")
@@ -49,7 +49,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource("1_7uqmy")
+script = ExtResource("1_7f7tj")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_7f7tj")
@@ -198,7 +198,7 @@ script = ExtResource("3_q3t5a")
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
-script = ExtResource("4_f0lgf")
+script = ExtResource("3_5d712")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot"]
 layout_mode = 1
@@ -248,7 +248,7 @@ stretch_mode = 0
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
-script = ExtResource("4_f0lgf")
+script = ExtResource("3_5d712")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot2"]
 layout_mode = 1
@@ -294,7 +294,7 @@ stretch_mode = 0
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
-script = ExtResource("4_f0lgf")
+script = ExtResource("3_5d712")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot3"]
 layout_mode = 1
@@ -340,7 +340,7 @@ stretch_mode = 0
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
-script = ExtResource("4_f0lgf")
+script = ExtResource("3_5d712")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot4"]
 layout_mode = 1
@@ -386,7 +386,7 @@ stretch_mode = 0
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
-script = ExtResource("4_f0lgf")
+script = ExtResource("3_5d712")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot5"]
 layout_mode = 1
@@ -432,7 +432,7 @@ stretch_mode = 0
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yj0ni")
-script = ExtResource("4_f0lgf")
+script = ExtResource("3_5d712")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot6"]
 layout_mode = 1
@@ -703,7 +703,7 @@ offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5d712")
-script = ExtResource("1_brmsw")
+script = ExtResource("7_q3t5a")
 
 [node name="SelecterItem" type="Panel" parent="CanvasLayer/Inventory"]
 custom_minimum_size = Vector2(60, 60)
@@ -714,7 +714,7 @@ offset_right = 368.0
 offset_bottom = 394.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_7uqmy")
+script = ExtResource("8_yj0ni")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/SelecterItem"]
 layout_mode = 1
@@ -755,12 +755,12 @@ layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 9
-script = ExtResource("2_njucy")
+script = ExtResource("9_cexoc")
 
 [node name="Itemslot" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot"]
 layout_mode = 1
@@ -804,7 +804,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot2" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot2"]
 layout_mode = 1
@@ -848,7 +848,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot3" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot3"]
 layout_mode = 1
@@ -892,7 +892,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot4" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot4"]
 layout_mode = 1
@@ -936,7 +936,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot5" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot5"]
 layout_mode = 1
@@ -980,7 +980,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot6" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot6"]
 layout_mode = 1
@@ -1024,7 +1024,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot7" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot7"]
 layout_mode = 1
@@ -1068,7 +1068,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot8" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot8"]
 layout_mode = 1
@@ -1112,7 +1112,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot9" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot9"]
 layout_mode = 1
@@ -1156,7 +1156,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot10" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot10"]
 layout_mode = 1
@@ -1200,7 +1200,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot11" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot11"]
 layout_mode = 1
@@ -1244,7 +1244,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot12" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot12"]
 layout_mode = 1
@@ -1288,7 +1288,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot13" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot13"]
 layout_mode = 1
@@ -1332,7 +1332,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot14" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot14"]
 layout_mode = 1
@@ -1376,7 +1376,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot15" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot15"]
 layout_mode = 1
@@ -1420,7 +1420,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot16" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot16"]
 layout_mode = 1
@@ -1464,7 +1464,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot17" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot17"]
 layout_mode = 1
@@ -1508,7 +1508,7 @@ texture = ExtResource("6_5d712")
 [node name="Itemslot18" type="Panel" parent="CanvasLayer/Inventory/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-script = ExtResource("1_elp5n")
+script = ExtResource("10_f0lgf")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Inventory/MarginContainer/GridContainer/Itemslot18"]
 layout_mode = 1

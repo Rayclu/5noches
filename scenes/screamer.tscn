@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://soiviogw2jcj"]
 
-[ext_resource type="Script" uid="uid://bun4b37q6f1tb" path="res://code/Economy.gd" id="1_li332"]
+[ext_resource type="Script" uid="uid://bun4b37q6f1tb" path="res://code/GLOBALS/Economy.gd" id="1_li332"]
 [ext_resource type="Texture2D" uid="uid://d27v87b8tcn63" path="res://assets/Untitled.png" id="2_djatc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4cf2m"]

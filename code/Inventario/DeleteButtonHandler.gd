@@ -13,6 +13,8 @@ func DeleteElement():
 	if !texture_rect.texture || len(ArrayObjects) == 0:
 		return
 	for objects in ArrayObjects:
+		if !texture_rect.texture || len(ArrayObjects) == 0:
+			return
 		if texture_rect.texture.load_path == load(objects["ref"].image).load_path:
 			if int(objects["CuSelect"]) == 1:
 				labelStock.text = ""
