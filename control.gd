@@ -16,8 +16,8 @@ func _ready() -> void:
 	ClientPanel.hide()
 
 func _input(event: InputEvent) -> void:   
-	print("asdasdaslñdk")
-	if Input.is_action_just_pressed("ui_accept"):
+	prints(Input.is_action_just_pressed("ui_accept"), i, !LeftAnimation.is_playing())
+	if Input.is_action_just_pressed("ui_accept")&& i==0 && !LeftAnimation.is_playing():
 		LeftAnimation.show()
 		LeftAnimation.play("Enter")
 		CLIENT.ChoseElementsToBuy()
@@ -34,7 +34,7 @@ func StartAnimation():
 		AnimationLeft.tween_property(LeftAnimation, "scale", Vector2(1,1), 10)
 		await get_tree().create_timer(0.5).timeout
 		LeftAnimation.sprite_frames.remove_frame("Back", 0)
-		i+=1
+		i-=1
 
 func StoleAnimation():
 	pass
