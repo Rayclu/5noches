@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://otrp368uf8nw"]
+[gd_scene load_steps=38 format=3 uid="uid://otrp368uf8nw"]
 
 [ext_resource type="Script" uid="uid://m3gd4ybxs012" path="res://control.gd" id="1_5p55f"]
 [ext_resource type="Texture2D" uid="uid://cpfg18k053oc2" path="res://assets/animation/2fps char.png" id="2_01bab"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://cao8vsqv3ykpa" path="res://assets/animation/10fps stole char.png" id="31_hl4in"]
 [ext_resource type="Texture2D" uid="uid://dua7t7333w14e" path="res://assets/animation/11fps stole char.png" id="32_136wn"]
 [ext_resource type="Script" uid="uid://yr15cpnk63nx" path="res://code/Inventario/UserRequeriments.gd" id="33_mnht8"]
+[ext_resource type="Texture2D" uid="uid://b1pqvhbwoqtyc" path="res://assets/conversation.png" id="33_sxeuk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fd2iw"]
 animations = [{
@@ -194,47 +195,69 @@ offset_top = -58.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="ClientRequeriments" type="Panel" parent="."]
+[node name="Nube" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.732
-anchor_top = 0.39
-anchor_right = 0.732
-anchor_bottom = 0.39
-offset_left = -0.264038
-offset_top = -2.72002
-offset_right = 211.736
-offset_bottom = 142.28
+anchor_left = 0.944
+anchor_top = 0.674
+anchor_right = 0.944
+anchor_bottom = 0.674
+offset_left = -407.488
+offset_top = -446.752
+offset_right = -165.488
+offset_bottom = -205.752
 grow_horizontal = 0
+grow_vertical = 2
+rotation = 0.00110793
+texture = ExtResource("33_sxeuk")
+expand_mode = 1
+
+[node name="ClientRequeriments" type="Panel" parent="Nube"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.971
+offset_top = -94.0222
+offset_right = 107.029
+offset_bottom = 50.9778
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_sxeuk")
 
-[node name="MarginContainer" type="MarginContainer" parent="ClientRequeriments"]
+[node name="MarginContainer" type="MarginContainer" parent="Nube/ClientRequeriments"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -145.0
-offset_right = 210.0
-grow_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -72.5
+offset_right = 105.0
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="GridContainer" type="GridContainer" parent="ClientRequeriments/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="Nube/ClientRequeriments/MarginContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
 columns = 3
 script = ExtResource("33_mnht8")
 
-[node name="Itemslot" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+[node name="Itemslot" type="Panel" parent="Nube/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
 
-[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot"]
+[node name="TextureRect" type="TextureRect" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -246,7 +269,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot"]
+[node name="Label" type="Label" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -260,12 +283,12 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
-[node name="Itemslot2" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+[node name="Itemslot2" type="Panel" parent="Nube/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
 
-[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot2"]
+[node name="TextureRect" type="TextureRect" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot2"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -277,7 +300,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot2"]
+[node name="Label" type="Label" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot2"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -291,12 +314,12 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
-[node name="Itemslot3" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+[node name="Itemslot3" type="Panel" parent="Nube/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
 
-[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot3"]
+[node name="TextureRect" type="TextureRect" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot3"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -308,7 +331,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot3"]
+[node name="Label" type="Label" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot3"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -322,12 +345,12 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
-[node name="Itemslot4" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+[node name="Itemslot4" type="Panel" parent="Nube/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
 
-[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot4"]
+[node name="TextureRect" type="TextureRect" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot4"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -339,7 +362,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot4"]
+[node name="Label" type="Label" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot4"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -353,12 +376,12 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
-[node name="Itemslot5" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+[node name="Itemslot5" type="Panel" parent="Nube/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
 
-[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot5"]
+[node name="TextureRect" type="TextureRect" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot5"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -370,7 +393,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot5"]
+[node name="Label" type="Label" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot5"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -384,12 +407,12 @@ grow_vertical = 0
 horizontal_alignment = 2
 vertical_alignment = 3
 
-[node name="Itemslot6" type="Panel" parent="ClientRequeriments/MarginContainer/GridContainer"]
+[node name="Itemslot6" type="Panel" parent="Nube/ClientRequeriments/MarginContainer/GridContainer"]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_nnsnw")
 
-[node name="TextureRect" type="TextureRect" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot6"]
+[node name="TextureRect" type="TextureRect" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot6"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0833333
@@ -401,7 +424,7 @@ expand_mode = 5
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="ClientRequeriments/MarginContainer/GridContainer/Itemslot6"]
+[node name="Label" type="Label" parent="Nube/ClientRequeriments/MarginContainer/GridContainer/Itemslot6"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

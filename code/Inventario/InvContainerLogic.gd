@@ -2,14 +2,17 @@ extends GridContainer
 
 
 func _ready() -> void:
+	print(LEVELS.InventoryPerLevel)
 	AddGridWitClass()
 
 func _process(delta: float) -> void:
+	
 	UpdateValues()
 
 func AddGridWitClass():
 	var i = 0
 	for Classitem in LEVELS.InventoryPerLevel[LEVELS.level]:
+		print(Classitem)
 		var itemSlot = get_child(i).get_children()
 		itemSlot[0].texture = load(Classitem.image)
 		itemSlot[1].text = str(Classitem.stock)

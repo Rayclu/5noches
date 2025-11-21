@@ -4,8 +4,8 @@
 [ext_resource type="Shader" uid="uid://dmrab3cggpqpw" path="res://Shader/blur_shader.gdshader" id="2_7f7tj"]
 [ext_resource type="Script" uid="uid://clhiwd7ijwujv" path="res://code/Inventario/DeleteButtonHandler.gd" id="3_5d712"]
 [ext_resource type="Script" uid="uid://dugqya2re53vx" path="res://code/Inventario/MiniInvControl.gd" id="3_q3t5a"]
-[ext_resource type="Texture2D" uid="uid://yh8cr87wwrk2" path="res://assets/massa.jpeg" id="4_cexoc"]
 [ext_resource type="Script" uid="uid://yr15cpnk63nx" path="res://code/Inventario/UserRequeriments.gd" id="4_yj0ni"]
+[ext_resource type="Texture2D" uid="uid://c35iq60yqci7c" path="res://assets/delete.png" id="5_f0lgf"]
 [ext_resource type="Texture2D" uid="uid://bhp2ccmrf751b" path="res://assets/padlock.png" id="6_5d712"]
 [ext_resource type="Script" uid="uid://7631g6nfmug5" path="res://code/Inventario/InventoryGeneralLogic.gd" id="7_q3t5a"]
 [ext_resource type="Script" uid="uid://cmkgr2ny6lfek" path="res://code/Inventario/SelectedItemLogic.gd" id="8_yj0ni"]
@@ -235,7 +235,7 @@ grow_vertical = 0
 action_mode = 0
 button_mask = 7
 keep_pressed_outside = true
-texture_normal = ExtResource("4_cexoc")
+texture_normal = ExtResource("5_f0lgf")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -259,11 +259,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot2"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -25.0
 offset_top = -23.0
-offset_right = 40.0
+offset_right = 15.0
+grow_horizontal = 2
 grow_vertical = 0
 vertical_alignment = 3
 
@@ -281,7 +285,7 @@ grow_vertical = 0
 action_mode = 0
 button_mask = 7
 keep_pressed_outside = true
-texture_normal = ExtResource("4_cexoc")
+texture_normal = ExtResource("5_f0lgf")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -305,11 +309,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot3"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -25.0
 offset_top = -23.0
-offset_right = 40.0
+offset_right = 15.0
+grow_horizontal = 2
 grow_vertical = 0
 vertical_alignment = 3
 
@@ -327,7 +335,7 @@ grow_vertical = 0
 action_mode = 0
 button_mask = 7
 keep_pressed_outside = true
-texture_normal = ExtResource("4_cexoc")
+texture_normal = ExtResource("5_f0lgf")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -351,11 +359,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot4"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -25.0
 offset_top = -23.0
-offset_right = 40.0
+offset_right = 15.0
+grow_horizontal = 2
 grow_vertical = 0
 vertical_alignment = 3
 
@@ -373,7 +385,7 @@ grow_vertical = 0
 action_mode = 0
 button_mask = 7
 keep_pressed_outside = true
-texture_normal = ExtResource("4_cexoc")
+texture_normal = ExtResource("5_f0lgf")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -397,11 +409,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot5"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -25.0
 offset_top = -23.0
-offset_right = 40.0
+offset_right = 15.0
+grow_horizontal = 2
 grow_vertical = 0
 vertical_alignment = 3
 
@@ -419,7 +435,7 @@ grow_vertical = 0
 action_mode = 0
 button_mask = 7
 keep_pressed_outside = true
-texture_normal = ExtResource("4_cexoc")
+texture_normal = ExtResource("5_f0lgf")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -443,11 +459,15 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="CanvasLayer/UserChoiseInv/MarginContainer/GridContainer/Itemslot6"]
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -25.0
 offset_top = -23.0
-offset_right = 40.0
+offset_right = 15.0
+grow_horizontal = 2
 grow_vertical = 0
 vertical_alignment = 3
 
@@ -465,7 +485,7 @@ grow_vertical = 0
 action_mode = 0
 button_mask = 7
 keep_pressed_outside = true
-texture_normal = ExtResource("4_cexoc")
+texture_normal = ExtResource("5_f0lgf")
 ignore_texture_size = true
 stretch_mode = 0
 

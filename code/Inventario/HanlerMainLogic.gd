@@ -6,7 +6,7 @@ extends CanvasLayer
 @onready var LabelLimitArray = get_node("LimitArray")
 @onready var finished_button = get_node("FinishedButton")
 @export var LIST_OF_ELEMENTS_SELECTEDS = []
-@onready var ClientListRequeriments = get_node("ClientRequeriments/MarginContainer/GridContainer").lista
+@onready var ClientListRequeriments = CLIENT.requeriments 
 @onready var canExitInv = get_node("CanExitInv?")
 @onready var exitSprite = get_node("ExitSprite")
 
@@ -120,29 +120,18 @@ func isRefInListOfSelecteds(): #funcion para verificar que el objeto en panel no
 		else:
 			return false
 	return false
-##asdkñljasdklñjasdklasjdklasjdklsaj
 
 func FinishInv():#funcion quwe se encarga de verificar si el inventario añadido por el usuario es igual al inventario requerido por el cliente.
 	if canExitInv.visible:
 		return
-	var cuantityOfequiality = 0
-	#len(ClientListRequeriments)*3
-	for product in ClientListRequeriments:
-		for chodesproduct in LIST_OF_ELEMENTS_SELECTEDS:
-			if product["name"] == chodesproduct["name"]:
-				print("hola1")
-				cuantityOfequiality+=1
-				if product["ref"].image == chodesproduct["ref"].image:
-					print("hola2")
-					cuantityOfequiality+=1
-					if product["CuSelect"] == chodesproduct["CuSelect"]:
-						print("hola3")
-						cuantityOfequiality+=1
-	if cuantityOfequiality == len(ClientListRequeriments)*3:
-		print("a tu puta casa")
+	prints(ClientListRequeriments,LIST_OF_ELEMENTS_SELECTEDS)
+	var ok = ClientListRequeriments.all(func(req):
+		return LIST_OF_ELEMENTS_SELECTEDS.any(func(sel):
+			return  req.name == sel["name"] and req.image == sel["ref"].image and req.stock == sel["CuSelect"]))
+	if ok:
 		var texture = TextureRect.new()
 		texture.texture = load("res://assets/massa.jpeg")
-		self.add_child(texture)
+		add_child(texture)
 		for child in HUD.get_children():
 			child.show()
 	else:
