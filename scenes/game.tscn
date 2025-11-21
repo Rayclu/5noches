@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://bei4f63fm8l0a"]
+[gd_scene load_steps=3 format=3 uid="uid://bei4f63fm8l0a"]
 
-[ext_resource type="Script" uid="uid://t30l6w3rvx6n" path="res://code/time.gd" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://dioi27mm7r0sg" path="res://code/gameManager.gd" id="1_yqjtg"]
 
 [sub_resource type="GDScript" id="GDScript_yqjtg"]
@@ -11,7 +10,6 @@ script/source = "extends Node
 script = ExtResource("1_yqjtg")
 
 [node name="time" type="Node" parent="."]
-script = ExtResource("1_uwrxv")
 
 [node name="player" type="Node" parent="."]
 

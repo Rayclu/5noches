@@ -1,17 +1,42 @@
 extends Node2D
-
+signal turnOffLights
 var actualPosition
 var type
 var enemies
 const TYPES_PEOPLE = ["moto", "cobre", "resorte", "testigo", "client"]
 const ENEMIES_ROUTES = {
-	"moto": ["reja","screamer"], # <-- screamer = partida perdida
-	"cobre": ["","","screamer"],
-	"resorte": ["", "screamer"],
-	"testigo": ["","screamer"] # <-- acá tendrían que ir las camaras en las que pueden aparecer, creo
+	"moto": [
+		"avenida",
+		"esquina",
+		"frente",
+		"screamer"
+	],
+
+	"cobre": [
+		"poste",
+		"zanja",
+		"medidor",
+		"cableado",
+		"screamer"
+	],
+
+	"resorte": [
+		"parada",
+		"puerta",
+		"galeria",
+		"screamer"
+	],
+
+	"testigo": [
+		"reja",
+		"pasillo",
+		"patio",
+		"ventana",
+		"screamer"
+	]
 }
 const FRIEND_ROUTE = ["reja"]
-var Actual_ubication = ""
+var previousPos: String = "hola"
 
 
 func moveEnemy(index = -1) -> Array:
@@ -20,15 +45,21 @@ func moveEnemy(index = -1) -> Array:
 func get_enemy():
 	return type
 	
-func get_actualPos():
-	return Actual_ubication
+func getActualPos():
+	return self.actualPosition
 	
 func init_enemy(t:String):
 	type = t
-#func _ready() -> void:
-	#type = 
-	#type = TYPES_PEOPLE[randi() % 4]
-	#print("enemy type ", type)
-	#moveEnemy(self.type, 0)
-	
-	
+
+func MoveToNextUbitacion():
+	if self.type == "cobre":
+		var route = ENEMIES_ROUTES[self.type]
+		if(self.actualPosition == null):
+			self.actualPosition = route[0]
+		self.previousPos = self.actualPosition
+		for i in range(len(route)):
+			if self.actualPosition == route[i] and self.actualPosition.to_lower() != "screamer":
+				self.actualPosition = route[i+1]
+				break
+			if (self.type == "cobre") and (self.actualPosition == "medidor") :
+				turnOffLights.emit()

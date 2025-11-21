@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdtq25ijhiaa3"]
+[gd_scene load_steps=5 format=3 uid="uid://cdtq25ijhiaa3"]
 
+[ext_resource type="Script" uid="uid://bukstwlv7o5t6" path="res://code/hud.gd" id="1_1etfg"]
 [ext_resource type="Script" uid="uid://dae01qrni0mu2" path="res://code/CamerasControllerHUD.gd" id="1_wc5e5"]
 [ext_resource type="Script" uid="uid://dotmdc2kywt6g" path="res://code/moneyControllerHUD.gd" id="2_wc5e5"]
 
@@ -7,6 +8,7 @@
 font_size = 30
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_1etfg")
 
 [node name="Cameras HUD" type="CanvasLayer" parent="."]
 
