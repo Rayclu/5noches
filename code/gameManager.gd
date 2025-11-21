@@ -64,10 +64,10 @@ func move():
 			enemy.MoveToNextUbitacion()
 			if enemy.actualPosition == "screamer":
 				print("Enemigo preparando el screamer") 
-			
 #-------------------------------------------------------------
 func LightsOut():
 	$".".get_child(10).get_child(0).outLights()
+#-------------------------------------------------------------
 func _process(delta: float) -> void:
 	Global.show_enms()
 	

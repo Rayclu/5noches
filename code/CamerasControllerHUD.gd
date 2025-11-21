@@ -4,7 +4,7 @@ signal ScreamerNeutralizado
 
 @onready var cameras = get_parent().get_node("CameraFeed")
 @onready var bttn = get_node("MainButton")
-@onready var main = preload("res://scenes/game.tscn")
+@onready var main = get_node("/root")
 var pressed = true
 const Images = {
 	"Cam1" : preload("res://assets/Captura de pantalla 2025-09-10 151249.png"),
@@ -13,10 +13,9 @@ const Images = {
 }
 
 func _ready() -> void:
-	var gm = main.instantiate()
-	if gm.has_signal("ScreamerAlert"):
+	if main.has_signal("ScreamerAlert"):
 		print("Señal encontrada")
-		gm.connect("ScreamerAlert", Callable(self, "_onScreamerAlert"))
+		main.connect("ScreamerAlert", Callable(self, "_onScreamerAlert"))
 	else:
 		print("CamerasControllerHUD: 'gameManager' encontrado pero no tiene la señal 'ScreamerAlert'")
 	bttn.pressed.connect(cameras_load)
@@ -44,7 +43,9 @@ func _onScreamerAlert():
 	print("Screamer lanzado")
 	var timer = Timer.new()
 	timer.one_shot = true
-	$"."/CamerasHUD.add_child(Button.new())
+	var new_bttn = Button.new()
+	print("bttn transform", new_bttn.get_transform())
+	get_node("/root/HUD").add_child(new_bttn)
 	timer.start(2)
 	
 	pass

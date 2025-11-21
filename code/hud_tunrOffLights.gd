@@ -2,7 +2,6 @@ extends CanvasLayer
 signal turnOffLights
 
 var enemy_scene = preload("res://code/enemies_scene.gd")
-@onready var textures = $TextureRectnew
 @onready var textura2 = load("res://assets/LightsOut.png")
 @onready var main = preload("res://scenes/game.tscn")
 func _ready() -> void:
