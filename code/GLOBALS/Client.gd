@@ -1,12 +1,8 @@
 extends Node
 
 var requeriments:Array
-var client:Object
+var client:Cliente
 
-
-func _ready() -> void:
-	ChoseElementsToBuy()
-	
 func ChoseElementsToBuy():
 	requeriments = []
 	randomize()
@@ -34,6 +30,12 @@ func ChoseElementsToBuy():
 			requeriments.append(ref)
 #	for req in requeriments:
 #		print(req.name)
-		
+
+func CreateClient():
+	ChoseElementsToBuy()
+	client = Cliente.CreateInstance("pepe",requeriments,"gaga")
+	
+
+
 func defineStoleProv():
 	pass

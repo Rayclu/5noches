@@ -181,7 +181,7 @@ stretch_mode = 5
 [node name="Left" type="AnimatedSprite2D" parent="."]
 position = Vector2(577, 328)
 sprite_frames = SubResource("SpriteFrames_fd2iw")
-animation = &"Enter"
+animation = &"Stole"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

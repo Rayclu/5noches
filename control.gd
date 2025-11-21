@@ -1,53 +1,40 @@
 extends Control
 
 @onready var texture_rect = get_node("TextureRect")
-@onready var LeftAnimation:AnimatedSprite2D = get_node("Left")
+@onready var animations:AnimatedSprite2D = get_node("Left")
 @onready var button = get_node("Button")
 @onready var ClientPanel = $Nube
 
-var tween = create_tween()
-var i = 0
+signal bebe
 
 func _ready() -> void:
-	CLIENT.ChoseElementsToBuy()
-	button.connect("pressed",Callable(self,"StartAnimation"))
-	LeftAnimation.play("Enter")
-	tween.tween_property(LeftAnimation, "scale", Vector2(10,10), 10)
 	ClientPanel.hide()
+	CLIENT.CreateClient()#-- crea cliente
+	self.add_child(CLIENT.client) #-- lo meto de hijo apra que el tween ande(sino no me lo detecta y no hace zoom)
+	#-- conecto la señal para poder tener logica desde de que se ejecutan cosas
+	CLIENT.client.EnterClient.connect(Callable(self,"apearThings"))
+	CLIENT.client.leftClient.connect(Callable(self,"ClientHasLeft"))
+	bebe.connect(Callable(self,"leftClient"))
+	#-- le seteo las animaciones
+	CLIENT.client.SetAnimations(animations) 
+	
+	CLIENT.client.EnterShop()
+	
+func apearThings():
+	ClientPanel.show() 
 
-func _input(event: InputEvent) -> void:   
-	prints(Input.is_action_just_pressed("ui_accept"), i, !LeftAnimation.is_playing())
-	if Input.is_action_just_pressed("ui_accept")&& i==0 && !LeftAnimation.is_playing():
-		LeftAnimation.show()
-		LeftAnimation.play("Enter")
-		CLIENT.ChoseElementsToBuy()
-		tween.kill()
-		tween = create_tween()
-		tween.tween_property(LeftAnimation, "scale", Vector2(10, 10), 10)
+func leftClient():
+	ClientPanel.hide()
+	CLIENT.client.BackClient()
 
-func StartAnimation():
-	if LeftAnimation.animation == "Enter" && i==1:
-		ClientPanel.hide()
-		LeftAnimation.scale = Vector2(9,9)
-		LeftAnimation.play("Back")
-		var AnimationLeft = create_tween()
-		AnimationLeft.tween_property(LeftAnimation, "scale", Vector2(1,1), 10)
-		await get_tree().create_timer(0.5).timeout
-		LeftAnimation.sprite_frames.remove_frame("Back", 0)
-		i-=1
-
-func StoleAnimation():
-	pass
-
+func ClientHasLeft():
+	print("se fueee wachooo")
+	
 func _process(delta: float) -> void:
-	if int(LeftAnimation.scale[0]) == 9 && LeftAnimation.animation == "Enter":
-		LeftAnimation.stop()
-		LeftAnimation.set_frame_and_progress(4,0.0)
-		tween.kill()
-		ClientPanel.show()
-		i=1
-	if int(LeftAnimation.scale[0])== 2 && LeftAnimation.animation == "Back":
-		LeftAnimation.stop()
-		LeftAnimation.hide()
-		
-	HUD.get_children()[0].hide()
+	if Input.is_action_just_pressed("ui_accept"):
+		bebe.emit()
+#func StoleAnimation():
+#	LeftAnimation.play("Stole")
+#	tween = create_tween()
+#	tween.tween_property(LeftAnimation,"scale",Vector2(2,2), 5)
+#	ClientPanel.hide()
